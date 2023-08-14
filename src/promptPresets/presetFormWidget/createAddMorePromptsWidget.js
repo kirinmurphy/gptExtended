@@ -1,6 +1,14 @@
 const MAX_ADDITIONAL_PROMPTS = 10;
 
 function createAddMorePromptsWidget ({ newForm }) {
+  const addMoreButtonWrapper = createNewElement({
+    elementType: 'div',
+    staticProps: {
+      className: 'addMoreButtonWrapper'
+    },
+    appendTo: newForm
+  });
+
   let fieldsetCount = 0;
 
   const addMoreButton = createNewElement({
@@ -15,16 +23,26 @@ function createAddMorePromptsWidget ({ newForm }) {
       if (fieldsetCount >= MAX_ADDITIONAL_PROMPTS) { 
         addMoreButton.disabled = true;
       } else {
-        insertAdditionalStarterPrompt({ newForm, addMoreButton, index: fieldsetCount });
+        insertAdditionalStarterPrompt({ newForm, addMoreButtonWrapper, index: fieldsetCount });
         fieldsetCount++;  
       }
     },
-    appendTo: newForm
+    appendTo: addMoreButtonWrapper
+  });
+
+  const addMorePromptsMessage = createNewElement({
+    elementType: 'div',
+    staticProps: {
+      textContent: 'Add additional prompt instructions you can set for each unique chat.'
+    },
+    appendTo: addMoreButtonWrapper
   });
 
   loadFormData(({ additional_prompts }) => {
+    fieldsetCount = additional_prompts.length;
+
     additional_prompts.forEach((savedValue, index) => {
-      insertAdditionalStarterPrompt({ newForm, addMoreButton, index, savedValue });
+      insertAdditionalStarterPrompt({ newForm, addMoreButtonWrapper, index, savedValue });
     });
 
     if (additional_prompts.length === MAX_ADDITIONAL_PROMPTS) {
@@ -36,20 +54,19 @@ function createAddMorePromptsWidget ({ newForm }) {
 function insertAdditionalStarterPrompt (props) {
   const { 
     newForm, 
-    addMoreButton, 
+    addMoreButtonWrapper, 
     index, 
     savedValue
   } = props;
 
-  const fieldset = createNewElement({
-    elementType: 'fieldset',
-    staticProps: { className: 'w-full' }
-  });
-  
-  const legend = createNewElement({
-    elementType: 'legend',
-    staticProps: { textContent: 'Starter Prompt' },
-    appendTo: fieldset
+  const hiddenInput = createNewElement({
+    elementType: 'input',
+    staticProps: {
+      type: 'hidden',
+      name: `additional_prompt_${index}_uuid`,
+      value: generateUUID()
+    },
+    appendTo: document.body
   });
   
   const starterName = createNewElement({
@@ -58,9 +75,9 @@ function insertAdditionalStarterPrompt (props) {
       name: `additional_prompt_${index}_name`,
       placeholder: 'Starter Prompt Name',
       required: true,
-      className: 'dark:bg-transparent mb-1 border border-gray-400'
-    },
-    appendTo: fieldset
+      className: 'mb-1 border border-gray-400',
+      value: !!savedValue ? savedValue.name : null
+    }
   });
   
   const starterMessage = createNewElement({
@@ -69,15 +86,30 @@ function insertAdditionalStarterPrompt (props) {
       name: `additional_prompt_${index}_message`,
       placeholder: 'Starter Prompt',
       required: true,
-      className: 'w-full dark:bg-transparent mb-1'
+      className: 'w-full mb-1',
+      value: !!savedValue ? savedValue.message : null
+    }
+  });
+
+  const removeButton = createNewElement({
+    elementType: 'button',
+    staticProps: {
+      textContent: '+',
+      className: 'remove-button'
     },
-    appendTo: fieldset
-  });  
+    clickHandler: (e) => { 
+      e.preventDefault();
+      const button = e.target;
+      const item = button.closest('fieldset');
+      item.parentNode.removeChild(item);
+    }
+  });
 
-  if (savedValue) {
-    starterName.value = savedValue.name;
-    starterMessage.value = savedValue.message; 
-  }
+  const fieldset = createNewElement({
+    elementType: 'fieldset',
+    staticProps: { className: 'w-full' },
+    append: [hiddenInput, starterName, starterMessage, removeButton]
+  }); 
 
-  newForm.insertBefore(fieldset, addMoreButton);
+  newForm.insertBefore(fieldset, addMoreButtonWrapper);
 }

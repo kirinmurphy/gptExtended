@@ -4,19 +4,12 @@ function createPromptPresetForm({ closeForm, appendTo }) {
     staticProps: {
       className: 'prompt-preset-form lg:mx-auto'
     },
-    appendTo: appendTo
+    appendTo
   });
 
-  createDefaultFields({ newForm, loadFormData });
-  createAddMorePromptsWidget({ newForm, loadFormData });
-  createActionsFooter({ newForm, loadFormData, closeForm })
+  createDefaultFields({ newForm });
+  createAddMorePromptsWidget({ newForm });
+  createActionsFooter({ newForm, closeForm });
  
-  console.log('newForm', newForm);
   return newForm;
-}
-
-function loadFormData(callback) {
-  chrome.storage.local.get('formData', function(result) {
-    callback(result.formData);
-  });
 }
