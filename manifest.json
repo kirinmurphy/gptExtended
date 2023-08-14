@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "GPTPlus",
+  "version": "1.0",
+  "content_scripts": [
+    {
+      "matches": ["https://chat.openai.com/*"],
+      "js": [
+        "src/utils/createNewElement.js",
+        "src/promptPresets/presetFormWidget/popup.js", 
+        "src/promptPresets/presetFormWidget/createPromptPresetWidget.js", 
+        "src/promptPresets/presetFormWidget/createDefaultFields.js", 
+        "src/promptPresets/presetFormWidget/createActionsFooter.js", 
+        "src/promptPresets/presetFormWidget/createAddMorePromptsWidget.js",
+        "content.js"
+      ],
+      "css": ["src/styles.css"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "permissions": [
+    "webRequest", 
+    "webRequestBlocking", 
+    "activeTab", 
+    "storage", 
+    "https://chat.openai.com/*"
+  ]
+}
