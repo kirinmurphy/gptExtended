@@ -1,0 +1,3 @@
+reset if deleting the active preset
+load element after newChat
+disable options with read-only display after first message 

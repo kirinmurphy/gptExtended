@@ -1,8 +1,6 @@
-function createNewElement({ elementType, staticProps, clickHandler, appendTo }) {
+function createNewElement({ elementType, staticProps, clickHandler, appendTo, append }) {
   const element = document.createElement(elementType);
   Object.assign(element, staticProps);
-
-  console.log(elementType, staticProps);
   
   if (clickHandler) {
     element.addEventListener('click', clickHandler);
@@ -12,11 +10,11 @@ function createNewElement({ elementType, staticProps, clickHandler, appendTo }) 
     appendTo.appendChild(element);
   }
 
-  // if ( append ) {
-  //   append.forEach(childElement => { 
-  //     element.appendChild(childElement);
-  //   });
-  // }
+  if ( append ) {
+    append.forEach(childElement => { 
+      childElement && element.appendChild(childElement);
+    });
+  }
 
   return element;
 }
