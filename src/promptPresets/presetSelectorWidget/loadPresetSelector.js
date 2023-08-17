@@ -33,7 +33,10 @@ async function loadPresetSelector ({ presetSelectorWrapper, additionalPrompts })
   options.forEach(prompt => {
     createNewElement({
       elementType: 'div',
-      staticProps: { value: prompt.uuid, textContent: prompt.name },
+      staticProps: { 
+        value: prompt.uuid, 
+        textContent: `${prompt.name} prompt`
+      },
       appendTo: presetOptionsWrapper,
       clickHandler: (e) => {
         chrome.storage.local.set({'selectedPreset': prompt.uuid}, async function() {
