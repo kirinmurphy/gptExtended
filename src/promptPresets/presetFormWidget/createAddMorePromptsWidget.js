@@ -64,7 +64,7 @@ function insertAdditionalStarterPrompt (props) {
     staticProps: {
       type: 'hidden',
       name: `additional_prompt_${index}_uuid`,
-      value: generateUUID()
+      value: savedValue?.uuid || generateUUID()
     },
     appendTo: document.body
   });

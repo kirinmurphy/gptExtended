@@ -38,15 +38,10 @@ async function loadPresetSelector ({ presetSelectorWrapper, additionalPrompts })
         textContent: `${prompt.name} prompt`
       },
       appendTo: presetOptionsWrapper,
-      clickHandler: (e) => {
-        chrome.storage.local.set({'selectedPreset': prompt.uuid}, async function() {
-          console.log('Selected value saved', prompt.uuid);
-          presetSelectorWrapper.setAttribute('data-is-open', false);
-          presetSelector.textContent = await getPresetLabel({ additionalPrompts });
-
-          const formData = await asyncLoad('formData');
-          await postPresets({ data: formData, selectedValue: prompt.uuid });      
-        });
+      clickHandler: async (e) => {
+        await postPresetsOnPromptChange({ selectedPreset: prompt.uuid });
+        presetSelectorWrapper.setAttribute('data-is-open', false);
+        presetSelector.textContent = await getPresetLabel({ additionalPrompts });    
       }
     });
   });   
@@ -58,5 +53,3 @@ async function getPresetLabel ({ additionalPrompts }) {
   const promptName = selectedPrompt?.name || defaultPromptOptions.name;
   return `use ${promptName} prompt`;
 }
-
-// close dropdown from clicking outside the element 
