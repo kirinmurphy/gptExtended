@@ -1,4 +1,9 @@
 async function createPresetSelector () {
+  const selectedPreset = await asyncLoad('selectedPreset');
+  if ( selectedPreset !== DEFAULT_UUID ) {
+    await postPresetsOnPromptChange({ selectedPreset: DEFAULT_UUID });
+  }
+
   const presetSelectorWrapper = createNewElement({
     elementType: 'div',
     staticProps: { className: 'presetSelectorWrapper' },

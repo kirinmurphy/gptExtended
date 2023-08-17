@@ -7,15 +7,16 @@
       "matches": ["https://chat.openai.com/*"],
       "js": [
         "src/utils/createNewElement.js",
-        "src/utils/loadFormData.js",
         "src/utils/asyncLoad.js",
         "src/utils/generateUUID.js",
         
         "src/promptPresets/index.js",
+        "src/promptPresets/loadFormData.js",
         "src/promptPresets/observeChatState.js",
         "src/promptPresets/createActivePromptMessage.js",
         "src/promptPresets/onChangeListener.js",
         "src/promptPresets/postPresets.js",
+        "src/promptPresets/postPresetsOnPromptChange.js",
         
         "src/promptPresets/presetFormWidget/index.js", 
         "src/promptPresets/presetFormWidget/popup.js", 
