@@ -14,7 +14,7 @@ function createPromptPresetFormToggle({ promptPresetWidget }) {
     clickHandler: function (e) {
       const newFormOverlay = createNewElement({
         elementType: 'div',
-        staticProps: { className: 'prompt-preset-form-overlay' },
+        staticProps: { className: 'form-overlay' },
         appendTo: promptPresetWidget
       });
         

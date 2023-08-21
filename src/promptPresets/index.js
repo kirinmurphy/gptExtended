@@ -1,8 +1,5 @@
 
-async function initStarterPromptWidget () {
-  const forms = document.getElementsByTagName('form');
-  const lastForm = forms[forms.length - 1];
-
+async function initStarterPromptWidget ({ promptPresetWrapper }) {
   const presetSelector = await createPresetSelector();
   const promptPresetWidget = createPromptPresetWidget();
 
@@ -23,8 +20,7 @@ async function initStarterPromptWidget () {
     staticProps: {
       className: 'promptPresetWidgetWrapper xl:max-w-3xl lg:max-w-2xl lg:mx-auto'
     },
+    appendTo: promptPresetWrapper,
     append:[promptEditorWrapper, activePromptMessage] 
   });
-
-  lastForm.parentNode.insertBefore(widgetWrapper, lastForm.nextSibling);
 }

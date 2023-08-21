@@ -1,3 +1,7 @@
+.gptExtendedWrapper {
+  display: flex;
+}
+
 .promptPresetWidgetWrapper {
   padding: .5rem 0 0 1rem;
   font-size: .9rem;
@@ -77,7 +81,7 @@
   box-sizing: content-box;
 } */
 
-.prompt-preset-form-overlay {
+.form-overlay {
   content: "";
   position: fixed;
   top:0;
