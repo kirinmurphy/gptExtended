@@ -1,4 +1,4 @@
-async function observeChatState() {
+async function observeChatState({ promptPresetWrapper }) {
   const interval = 1000; // 1 second interval
 
   async function poll() {
@@ -18,7 +18,7 @@ async function observeChatState() {
 
     if ( !headerElement ) {
       const promptPresetWidget = document.querySelector('.promptPresetWidgetWrapper');        
-      if ( !promptPresetWidget ) { await initStarterPromptWidget(); }
+      if ( !promptPresetWidget ) { await initStarterPromptWidget({ promptPresetWrapper }); }
     }
 
     setTimeout(poll, interval);

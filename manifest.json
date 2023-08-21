@@ -6,9 +6,13 @@
     {
       "matches": ["https://chat.openai.com/*"],
       "js": [
+        "src/index.js",
+
         "src/utils/createNewElement.js",
         "src/utils/asyncLoad.js",
         "src/utils/generateUUID.js",
+        
+        "src/widgets/createNewForMOverlay.js",
         
         "src/promptPresets/index.js",
         "src/promptPresets/loadFormData.js",
@@ -19,7 +23,7 @@
         "src/promptPresets/postPresetsOnPromptChange.js",
         
         "src/promptPresets/presetFormWidget/index.js", 
-        "src/promptPresets/presetFormWidget/popup.js", 
+        "src/promptPresets/presetFormWidget/createPromptPresetForm.js", 
         "src/promptPresets/presetFormWidget/savePromptPresets.js", 
         "src/promptPresets/presetFormWidget/createDefaultFields.js", 
         "src/promptPresets/presetFormWidget/createActionsFooter.js", 
@@ -27,6 +31,8 @@
 
         "src/promptPresets/presetSelectorWidget/index.js",
         "src/promptPresets/presetSelectorWidget/loadPresetSelector.js",
+
+        "src/clipboard/index.js",
 
         "content.js"
       ],
