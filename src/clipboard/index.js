@@ -15,13 +15,35 @@ function observePromptMessage ({ clipboardWrapper }) {
   textarea.addEventListener('keyup', () => {
     textarea.value = replaceKeywords(textarea.value, replacements);
   });
-  
-  createNewElement({ 
-    elementType: 'div', 
-    staticProps: {
-      className: 'gptExtendedWrapper',
-      textContent: 'herlo'
-    },
+
+  createClipboardWidget({ clipboardWrapper });
+}
+
+function createClipboardWidget ({ clipboardWrapper }) {
+
+  const clipboardWidget = createNewElement({ 
+    elementType: 'div',
     appendTo: clipboardWrapper
-  });
+  });  
+
+  createPopupFormWidget({ 
+    parent: clipboardWidget,
+    toggleText: 'clipboard',
+    createPopupFormFields: ({ newForm }) => {
+      createAddMoreFieldsetsWidget({ 
+        newForm,
+        addMoreButtonText: 'Add More Clipboard Items',
+        // additionalOptionInstruction: 'Add additional prompt instructions you can set for each unique chat.',
+        formFieldText: {
+          label: 'Keyword',
+          message: 'Clipboard Text'
+        },
+        savedFormDataKey: 'clipboardData',
+        savedFormAdditionalFieldsKey: 'additional_clipboard_items'
+      });
+    },
+    saveAction: savePromptClipboardEntries
+  });  
+  
+  return clipboardWidget;
 }

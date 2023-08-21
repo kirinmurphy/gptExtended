@@ -1,4 +1,4 @@
-function createActionsFooter ({ newForm, closeForm }) {
+function createActionsFooter ({ newForm, closeForm, saveAction }) {
   const saveButton = createNewElement({
     elementType: 'button',
     staticProps: {
@@ -7,7 +7,7 @@ function createActionsFooter ({ newForm, closeForm }) {
     },
     clickHandler: function (e) {
       e.preventDefault();
-      savePromptPresets({ newForm });
+      saveAction({ newForm });
       closeForm(newForm);
     }
   });
@@ -26,7 +26,7 @@ function createActionsFooter ({ newForm, closeForm }) {
   
   const actionsFooter = createNewElement({
     elementType: 'div',
-    staticProps: { className: 'promptPresetsActionsFooter text-right' },
+    staticProps: { className: 'formActionsFooter text-right' },
     append: [saveButton, cancelButton]
   });
 
