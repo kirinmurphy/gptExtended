@@ -1,6 +1,15 @@
-const MAX_ADDITIONAL_PROMPTS = 10;
+const MAX_ADDITIONAL_FIELDS = 10;
 
-function createAddMorePromptsWidget ({ newForm }) {
+async function createAddMoreFieldsetsWidget (props) {
+  const { 
+    newForm, 
+    addMoreButtonText, 
+    additionalOptionInstruction,
+    formFieldText,
+    savedFormDataKey,
+    savedFormAdditionalFieldsKey
+  } = props;
+
   const addMoreButtonWrapper = createNewElement({
     elementType: 'div',
     staticProps: {
@@ -14,66 +23,81 @@ function createAddMorePromptsWidget ({ newForm }) {
   const addMoreButton = createNewElement({
     elementType: 'button',
     staticProps: {
-      textContent: 'Add More Prompts',
+      textContent: addMoreButtonText,
       className: 'btn btn-primary'
     },
     clickHandler: (e) => {
       e.preventDefault();
   
-      if (fieldsetCount >= MAX_ADDITIONAL_PROMPTS) { 
+      if (fieldsetCount >= MAX_ADDITIONAL_FIELDS) { 
         addMoreButton.disabled = true;
       } else {
-        insertAdditionalStarterPrompt({ newForm, addMoreButtonWrapper, index: fieldsetCount });
+        insertAdditionalFieldset({ 
+          newForm, 
+          addMoreButtonWrapper, 
+          index: fieldsetCount, 
+          formFieldText 
+        });
         fieldsetCount++;  
       }
     },
     appendTo: addMoreButtonWrapper
   });
 
-  const addMorePromptsMessage = createNewElement({
-    elementType: 'div',
-    staticProps: {
-      textContent: 'Add additional prompt instructions you can set for each unique chat.'
-    },
-    appendTo: addMoreButtonWrapper
-  });
+  if ( additionalOptionInstruction ) {
+    createNewElement({
+      elementType: 'div',
+      staticProps: {
+        textContent: additionalOptionInstruction
+      },
+      appendTo: addMoreButtonWrapper
+    });  
+  }
 
-  loadFormData(({ additional_prompts }) => {
-    fieldsetCount = additional_prompts.length;
+  // load existing fields
+  const results = await asyncLoad(savedFormDataKey);
+  const additionalFields = results[savedFormAdditionalFieldsKey];  
 
-    additional_prompts.forEach((savedValue, index) => {
-      insertAdditionalStarterPrompt({ newForm, addMoreButtonWrapper, index, savedValue });
+  fieldsetCount = additionalFields.length;
+
+  additionalFields.forEach((savedValue, index) => {
+    insertAdditionalFieldset({ 
+      newForm, 
+      addMoreButtonWrapper, 
+      index, 
+      savedValue,
+      formFieldText
     });
-
-    if (additional_prompts.length === MAX_ADDITIONAL_PROMPTS) {
-      addMoreButton.disabled = true;
-    }
   });
+
+  if (additionalFields.length === MAX_ADDITIONAL_FIELDS) {
+    addMoreButton.disabled = true;
+  }
 }
 
-function insertAdditionalStarterPrompt (props) {
+function insertAdditionalFieldset (props) {
   const { 
     newForm, 
     addMoreButtonWrapper, 
     index, 
-    savedValue
+    savedValue,
+    formFieldText: { label, message }
   } = props;
 
   const hiddenInput = createNewElement({
     elementType: 'input',
     staticProps: {
       type: 'hidden',
-      name: `additional_prompt_${index}_uuid`,
+      name: `additional_option_${index}_uuid`,
       value: savedValue?.uuid || generateUUID()
-    },
-    appendTo: document.body
+    }
   });
   
   const starterName = createNewElement({
     elementType: 'input',
     staticProps: {
-      name: `additional_prompt_${index}_name`,
-      placeholder: 'Starter Prompt Name',
+      name: `additional_option_${index}_name`,
+      placeholder: label,
       required: true,
       className: 'mb-1 border border-gray-400',
       value: !!savedValue ? savedValue.name : null
@@ -83,8 +107,8 @@ function insertAdditionalStarterPrompt (props) {
   const starterMessage = createNewElement({
     elementType: 'textarea',
     staticProps: {
-      name: `additional_prompt_${index}_message`,
-      placeholder: 'Starter Prompt',
+      name: `additional_option_${index}_message`,
+      placeholder: message,
       required: true,
       className: 'w-full mb-1',
       value: !!savedValue ? savedValue.message : null

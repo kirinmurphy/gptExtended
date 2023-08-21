@@ -1,10 +1,11 @@
 .gptExtendedWrapper {
   display: flex;
-}
-
-.promptPresetWidgetWrapper {
   padding: .5rem 0 0 1rem;
   font-size: .9rem;
+}
+
+.gptExtendedWrapper > * {
+  margin-right: 1rem;
 }
 
 .promptEditorWrapper {
@@ -20,7 +21,6 @@
 .presetSelector {
   cursor: pointer;
   padding-right: .2rem;
-  margin-right: 1rem;
 }
 
 .presetSelector:after {
@@ -92,7 +92,7 @@
   background: rgba(52,53,65,.9);
 }
 
-.prompt-preset-form {
+.popupForm {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -109,23 +109,23 @@
   overflow-y: auto;
 }
 
-button.add-custom-instructions {
+button.popupFormToggle {
   text-decoration: underline;
 }
 
-.prompt-preset-form textarea {
+.popupForm textarea {
   margin-bottom: 1rem;
 }
 
-.prompt-preset-form > label textarea {
+.popupForm > label textarea {
   margin-top: .5rem;
 }
  
-.prompt-preset-form fieldset {
+.popupForm fieldset {
   position: relative;
 }
 
-.prompt-preset-form fieldset input {
+.popupForm fieldset input {
   display: block;
   width: 240px;
   padding: .5rem;
@@ -133,13 +133,13 @@ button.add-custom-instructions {
   margin-bottom: .5rem;
 }
 
-.prompt-preset-form input,
-.prompt-preset-form textarea {
+.popupForm input,
+.popupForm textarea {
   background: rgb(52,53,65);
   border-radius: 4px;
 }
 
-.prompt-preset-form fieldset .remove-button {
+.popupForm fieldset .remove-button {
   position: absolute;
   top: 8px; 
   right: 0;
@@ -147,13 +147,13 @@ button.add-custom-instructions {
   font-size: 1.5rem;  
 }
 
-.prompt-preset-form .addMoreButtonWrapper {
+.popupForm .addMoreButtonWrapper {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
   align-items: center;
 }
 
-.prompt-preset-form .promptPresetsActionsFooter button {
+.popupForm .formActionsFooter button {
   margin-left: .5rem;
 }

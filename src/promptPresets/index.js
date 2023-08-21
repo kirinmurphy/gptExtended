@@ -15,7 +15,7 @@ async function initStarterPromptWidget ({ promptPresetWrapper }) {
 
   const activePromptMessage = await createActivePromptMessage();
 
-  const widgetWrapper = createNewElement({ 
+  createNewElement({ 
     elementType: 'div', 
     staticProps: {
       className: 'promptPresetWidgetWrapper xl:max-w-3xl lg:max-w-2xl lg:mx-auto'
