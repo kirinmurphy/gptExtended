@@ -5,9 +5,5 @@ chrome.runtime.onMessage.addListener(
   } 
 );
 
+observeChatState();
 
-const { promptPresetWrapper, clipboardWrapper } = initGptExtended();
-
-observeChatState({ promptPresetWrapper });
-
-observePromptMessage({ clipboardWrapper });

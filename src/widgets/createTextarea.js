@@ -16,7 +16,6 @@ async function createTextarea(props) {
 
   adjustTextareaHeight(textarea);
 
-
   const label = createNewElement({
     elementType: 'label',
     staticProps: {
