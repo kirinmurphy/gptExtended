@@ -118,6 +118,8 @@ function insertAdditionalFieldset (props) {
     }
   });
 
+  adjustTextareaHeight(starterMessage);
+
   const removeButton = createNewElement({
     elementType: 'button',
     staticProps: {

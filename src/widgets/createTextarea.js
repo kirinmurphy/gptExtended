@@ -14,6 +14,9 @@ async function createTextarea(props) {
   const formData = await asyncLoad(savedFormDataKey);
   textarea.value = formData[textarea.name];
 
+  adjustTextareaHeight(textarea);
+
+
   const label = createNewElement({
     elementType: 'label',
     staticProps: {
