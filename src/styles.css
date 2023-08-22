@@ -113,6 +113,10 @@ button.popupFormToggle {
   text-decoration: underline;
 }
 
+.popupForm > header {
+  margin-bottom: 1.25rem;
+}
+
 .popupForm textarea {
   margin-bottom: 1rem;
 }

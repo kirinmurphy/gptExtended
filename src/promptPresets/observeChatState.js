@@ -28,7 +28,6 @@ async function observeChatState() {
       }  
     }
 
-
     setTimeout(poll, interval);
   }
 
