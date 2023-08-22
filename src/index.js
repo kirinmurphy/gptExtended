@@ -19,7 +19,7 @@ function initGptExtended () {
   const gptExtendedWrapper = createNewElement({ 
     elementType: 'div', 
     staticProps: {
-      className: 'gptExtendedWrapper'
+      className: 'gptExtendedWrapper xl:max-w-3xl lg:max-w-2xl lg:mx-auto'
     },
     append: [promptPresetWrapper, clipboardWrapper]
   });

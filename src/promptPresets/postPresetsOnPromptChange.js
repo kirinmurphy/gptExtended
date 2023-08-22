@@ -3,7 +3,7 @@ async function postPresetsOnPromptChange ({ selectedPreset }) {
     chrome.storage.local.set({'selectedPreset': selectedPreset}, async function() {
       const formData = await asyncLoad('formData');
       await postPresets({ data: formData, selectedValue: selectedPreset });      
-      console.log('Selected value saved', selectedPreset);
+      console.log('Selected value saved');
       resolve();
     });
   });

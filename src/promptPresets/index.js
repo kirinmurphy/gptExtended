@@ -18,7 +18,7 @@ async function initStarterPromptWidget ({ promptPresetWrapper }) {
   createNewElement({ 
     elementType: 'div', 
     staticProps: {
-      className: 'promptPresetWidgetWrapper xl:max-w-3xl lg:max-w-2xl lg:mx-auto'
+      className: 'promptPresetWidgetWrapper'
     },
     appendTo: promptPresetWrapper,
     append:[promptEditorWrapper, activePromptMessage] 

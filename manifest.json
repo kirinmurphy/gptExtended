@@ -1,53 +1,56 @@
 {
-  "manifest_version": 2,
-  "name": "GPTPlus",
-  "version": "1.0",
-  "content_scripts": [
-    {
-      "matches": ["https://chat.openai.com/*"],
-      "js": [
-        "src/index.js",
-
-        "src/utils/createNewElement.js",
-        "src/utils/asyncLoad.js",
-        "src/utils/generateUUID.js",
-        "src/utils/saveFormElements.js",
-        
-        "src/widgets/createActionsFooter.js", 
-        "src/widgets/createPopupFormWidget.js",
-        "src/widgets/createAddMoreFieldsetsWidget.js",
-        "src/widgets/createTextarea.js",
-
-        "src/promptPresets/index.js",
-        "src/promptPresets/observeChatState.js",
-        "src/promptPresets/createActivePromptMessage.js",
-        "src/promptPresets/onChangeListener.js",
-        "src/promptPresets/postPresets.js",
-        "src/promptPresets/postPresetsOnPromptChange.js",
-        
-        "src/promptPresets/presetFormWidget/index.js", 
-        "src/promptPresets/presetFormWidget/savePromptPresets.js", 
-
-        "src/promptPresets/presetSelectorWidget/index.js",
-        "src/promptPresets/presetSelectorWidget/loadPresetSelector.js",
-
-        "src/clipboard/index.js",
-        "src/clipboard/saveClipboardEntries.js",
-
-        "content.js"
-      ],
-      "css": ["src/styles.css"]
-    }
-  ],
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": true
-  },
-  "permissions": [
-    "webRequest", 
-    "webRequestBlocking", 
-    "activeTab", 
-    "storage", 
-    "https://chat.openai.com/*"
-  ]
+    "manifest_version": 2,
+    "name": "GPTPlus",
+    "version": "1.0",
+    "content_scripts": [
+        {
+            "matches": [
+                "https://chat.openai.com/*"
+            ],
+            "js": [
+                "src/index.js",
+                "src/utils/asyncLoad.js",
+                "src/utils/triggerKeypress.js",
+                "src/utils/debounce.js",
+                "src/utils/createNewElement.js",
+                "src/utils/generateUUID.js",
+                "src/utils/saveFormElements.js",
+                "src/promptPresets/createActivePromptMessage.js",
+                "src/promptPresets/onChangeListener.js",
+                "src/promptPresets/postPresetsOnPromptChange.js",
+                "src/promptPresets/index.js",
+                "src/promptPresets/observeChatState.js",
+                "src/promptPresets/postPresets.js",
+                "src/promptPresets/presetFormWidget/index.js",
+                "src/promptPresets/presetFormWidget/savePromptPresets.js",
+                "src/promptPresets/presetSelectorWidget/loadPresetSelector.js",
+                "src/promptPresets/presetSelectorWidget/index.js",
+                "src/widgets/createTextarea.js",
+                "src/widgets/createActionsFooter.js",
+                "src/widgets/createPopupFormWidget.js",
+                "src/widgets/createNewFormOverlay.js",
+                "src/widgets/createAddMoreFieldsetsWidget.js",
+                "src/clipboard/createClipboardWidget.js",
+                "src/clipboard/index.js",
+                "src/clipboard/saveClipboardEntries.js",
+                "content.js"
+            ],
+            "css": [
+                "src/styles.css"
+            ]
+        }
+    ],
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": true
+    },
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "activeTab",
+        "storage",
+        "https://chat.openai.com/*"
+    ]
 }

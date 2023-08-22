@@ -4,7 +4,7 @@ function createPromptPresetWidget () {
 
   createPopupFormWidget({ 
     parent: promptPresetWidget,
-    toggleText: 'custom instructions',
+    toggleText: 'instructions',
     createPopupFormFields: async ({ newForm }) => {
 
       newForm.appendChild(await createTextarea({ 

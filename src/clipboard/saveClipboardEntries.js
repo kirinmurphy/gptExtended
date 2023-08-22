@@ -1,23 +1,24 @@
+const CLIPBOARD_FORM_DATA_KEY = 'clipboardData';
+const CLIPBOARD_ADDITIONAL_FIELDS_KEY = 'additional_clipboard_items';
+
 function savePromptClipboardEntries ({ newForm }) {
   saveFormElements({ 
     newForm,
-    formStorageKey: 'clipboardData',
+    formStorageKey: CLIPBOARD_FORM_DATA_KEY,
     formatter: (input) => {
-    
-      const additionalPrompts = Object.entries(input)
+      const clipboardItems = Object.entries(input)
         .filter(([key]) => key.startsWith('additional_option_') && key.endsWith('_name'))
         .map(([key, name]) => {
           const index = key.split('_')[2];
-          const message = others[`additional_option_${index}_message`];
-          const uuid = others[`additional_option_${index}_uuid`];
+          const message = input[`additional_option_${index}_message`];
+          const uuid = input[`additional_option_${index}_uuid`];
           return { name, message, uuid };
         });
-    
-      return { 
-        about_user_message, 
-        about_model_message_default, 
-        additional_prompts: additionalPrompts 
-      };
+
+      const returnObject = {};
+      returnObject[CLIPBOARD_ADDITIONAL_FIELDS_KEY] = clipboardItems;
+
+      return returnObject;
     } 
   });
 }
