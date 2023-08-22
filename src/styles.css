@@ -119,6 +119,7 @@ button.popupFormToggle {
 
 .popupForm > label textarea {
   margin-top: .5rem;
+  min-height: 80px;
 }
  
 .popupForm fieldset {

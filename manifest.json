@@ -10,6 +10,7 @@
             "js": [
                 "src/index.js",
                 "src/utils/asyncLoad.js",
+                "src/utils/adjustTextareaHeight.js",
                 "src/utils/triggerKeypress.js",
                 "src/utils/debounce.js",
                 "src/utils/createNewElement.js",
