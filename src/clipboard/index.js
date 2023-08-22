@@ -1,49 +1,28 @@
-const replaceKeywords = (message, replacements) => {
-  return replacements.reduce((updatedMessage, { keyword, replacement }) => {
-    const keywordExists = updatedMessage.includes(keyword);
-    const newReplacement = `\n\n${replacement}\n\n`;
-    return keywordExists ? updatedMessage.split(keyword).join(newReplacement) : updatedMessage;
-  }, message);
-};
-
-const replacements = [
-  { keyword: '#sandwich', replacement: 'I am the replacement' },
-];
-
 function observePromptMessage ({ clipboardWrapper }) {
   const textarea = document.querySelector('main form:first-of-type textarea');
-  textarea.addEventListener('keyup', () => {
-    textarea.value = replaceKeywords(textarea.value, replacements);
+  let replacements;
+
+  textarea.addEventListener('keyup', async () => {
+    const clipboardData = await asyncLoad(CLIPBOARD_FORM_DATA_KEY);
+    replacements = clipboardData[CLIPBOARD_ADDITIONAL_FIELDS_KEY];
+    if ( replacements.length ) { 
+      const newValue = replaceKeywords(textarea.value, replacements);
+      if ( textarea.value !== newValue ) {
+        textarea.value = replaceKeywords(textarea.value, replacements);
+        simulateKeyPress(textarea, { key: ' ' });
+        textarea.scrollTop = textarea.scrollHeight;
+      }
+    }
   });
 
   createClipboardWidget({ clipboardWrapper });
 }
 
-function createClipboardWidget ({ clipboardWrapper }) {
-
-  const clipboardWidget = createNewElement({ 
-    elementType: 'div',
-    appendTo: clipboardWrapper
-  });  
-
-  createPopupFormWidget({ 
-    parent: clipboardWidget,
-    toggleText: 'clipboard',
-    createPopupFormFields: ({ newForm }) => {
-      createAddMoreFieldsetsWidget({ 
-        newForm,
-        addMoreButtonText: 'Add More Clipboard Items',
-        // additionalOptionInstruction: 'Add additional prompt instructions you can set for each unique chat.',
-        formFieldText: {
-          label: 'Keyword',
-          message: 'Clipboard Text'
-        },
-        savedFormDataKey: 'clipboardData',
-        savedFormAdditionalFieldsKey: 'additional_clipboard_items'
-      });
-    },
-    saveAction: savePromptClipboardEntries
-  });  
-  
-  return clipboardWidget;
-}
+function replaceKeywords (prompt, replacements) {
+  console.log('------------');
+  return replacements.reduce((updatedMessage, { name, message }) => {
+    const keywordExists = updatedMessage.includes(name);
+    const newReplacement = `\n\n${message}\n`;
+    return keywordExists ? updatedMessage.split(name).join(newReplacement) : updatedMessage;
+  }, prompt);
+};

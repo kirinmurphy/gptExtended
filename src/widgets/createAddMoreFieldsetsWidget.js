@@ -24,7 +24,7 @@ async function createAddMoreFieldsetsWidget (props) {
     elementType: 'button',
     staticProps: {
       textContent: addMoreButtonText,
-      className: 'btn btn-primary'
+      className: 'addMoreButton btn btn-primary'
     },
     clickHandler: (e) => {
       e.preventDefault();
@@ -56,22 +56,25 @@ async function createAddMoreFieldsetsWidget (props) {
 
   // load existing fields
   const results = await asyncLoad(savedFormDataKey);
-  const additionalFields = results[savedFormAdditionalFieldsKey];  
 
-  fieldsetCount = additionalFields.length;
+  if ( results ) {
+    const additionalFields = results[savedFormAdditionalFieldsKey];  
 
-  additionalFields.forEach((savedValue, index) => {
-    insertAdditionalFieldset({ 
-      newForm, 
-      addMoreButtonWrapper, 
-      index, 
-      savedValue,
-      formFieldText
+    fieldsetCount = additionalFields.length;
+  
+    additionalFields.forEach((savedValue, index) => {
+      insertAdditionalFieldset({ 
+        newForm, 
+        addMoreButtonWrapper, 
+        index, 
+        savedValue,
+        formFieldText
+      });
     });
-  });
-
-  if (additionalFields.length === MAX_ADDITIONAL_FIELDS) {
-    addMoreButton.disabled = true;
+  
+    if (additionalFields.length === MAX_ADDITIONAL_FIELDS) {
+      addMoreButton.disabled = true;
+    }  
   }
 }
 
