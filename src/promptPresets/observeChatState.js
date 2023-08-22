@@ -1,10 +1,11 @@
-async function observeChatState({ promptPresetWrapper }) {
+async function observeChatState() {
   const interval = 1000; // 1 second interval
 
   async function poll() {
     const headerElement = document.querySelector('header.sticky');
     const promptEditorWrapper = document.querySelector('.promptEditorWrapper');
     const activePromptMessage = document.querySelector('.activePromptMessage');
+    const gptExtendedWrapper = document.querySelector('.gptExtendedWrapper');
 
     if ( promptEditorWrapper ) {
       if ( headerElement ) {        
@@ -16,10 +17,17 @@ async function observeChatState({ promptPresetWrapper }) {
       }
     }
 
-    if ( !headerElement ) {
-      const promptPresetWidget = document.querySelector('.promptPresetWidgetWrapper');        
-      if ( !promptPresetWidget ) { await initStarterPromptWidget({ promptPresetWrapper }); }
+    if ( !gptExtendedWrapper ) {
+      const { promptPresetWrapper, clipboardWrapper } = initGptExtended();
+
+      observePromptMessage({ clipboardWrapper });
+
+      if ( !headerElement ) {
+        const promptPresetWidget = document.querySelector('.promptPresetWidgetWrapper');        
+        if ( !promptPresetWidget ) { await initStarterPromptWidget({ promptPresetWrapper }); }
+      }  
     }
+
 
     setTimeout(poll, interval);
   }
