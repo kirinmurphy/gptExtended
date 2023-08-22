@@ -8,6 +8,8 @@ function createClipboardWidget ({ clipboardWrapper }) {
 
   createPopupFormWidget({ 
     parent: clipboardWidget,
+    title: 'Clipboard',
+    tagline: 'Save commonly used text snippets to re-use across chats.  Type the <strong>#keyword</strong> into the chat window to popuplate the message.',
     toggleText: 'clipboard',
     createPopupFormFields: async ({ newForm }) => {
       createAddMoreFieldsetsWidget({ 

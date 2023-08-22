@@ -4,6 +4,8 @@ function createPromptPresetWidget () {
 
   createPopupFormWidget({ 
     parent: promptPresetWidget,
+    title: 'Better Instructions',
+    tagline: 'Add instructions to set up a chat with a specific context.',
     toggleText: 'instructions',
     createPopupFormFields: async ({ newForm }) => {
 
