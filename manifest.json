@@ -37,7 +37,9 @@
                 "content.js"
             ],
             "css": [
-                "src/styles.css"
+                "src/_css/styles.css",
+                "src/_css/popupForm.css",
+                "src/_css/presetSelector.css"
             ]
         }
     ],
