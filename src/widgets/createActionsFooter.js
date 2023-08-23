@@ -8,7 +8,7 @@ function createActionsFooter ({ newForm, closeForm, saveAction }) {
     clickHandler: function (e) {
       e.preventDefault();
       saveAction({ newForm });
-      closeForm(newForm);
+      closeForm();
     }
   });
 
@@ -20,7 +20,7 @@ function createActionsFooter ({ newForm, closeForm, saveAction }) {
     },
     clickHandler: function (e) {
       e.preventDefault();
-      closeForm(newForm);
+      closeForm();
     }
   });
   

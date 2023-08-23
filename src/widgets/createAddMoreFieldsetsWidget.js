@@ -1,4 +1,4 @@
-const MAX_ADDITIONAL_FIELDS = 10;
+const MAX_ADDITIONAL_FIELDS = 100;
 
 async function createAddMoreFieldsetsWidget (props) {
   const { 
@@ -39,6 +39,7 @@ async function createAddMoreFieldsetsWidget (props) {
           formFieldText 
         });
         fieldsetCount++;  
+        newForm.scrollTop = newForm.scrollHeight;
       }
     },
     appendTo: addMoreButtonWrapper

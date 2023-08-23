@@ -21,19 +21,27 @@ function createPopupFormWidget(props) {
         staticProps: { className: 'form-overlay' },
         appendTo: parent,
         clickHandler: (e) => {
-          closeForm(newForm);
+          closeForm();
         }
+      });
+
+      const newFormWrapper = createNewElement({
+        elementType: 'div',
+        staticProps: {
+          className: 'popupFormWrapper lg:mx-auto'
+        },
+        appendTo: parent
       });
 
       const newForm = createNewElement({
         elementType: 'form',
         staticProps: {
-          className: 'popupForm lg:mx-auto'
+          className: 'popupForm'
         },
-        appendTo: parent
+        appendTo: newFormWrapper
       });
 
-      createHeader ({ newForm, title, tagline, closeForm });
+      createHeader ({ newForm, newFormWrapper, title, tagline, closeForm });
 
       await createPopupFormFields({ 
         newForm,
@@ -44,8 +52,8 @@ function createPopupFormWidget(props) {
 
       popupFormToggle.style.display = 'none';  
 
-      function closeForm (newForm) {
-        newForm.parentNode.removeChild(newForm);
+      function closeForm () {
+        newFormWrapper.parentNode.removeChild(newFormWrapper);
         newFormOverlay.parentNode.removeChild(newFormOverlay);
         popupFormToggle.removeAttribute('style');
       }
@@ -61,7 +69,7 @@ function createPopupFormWidget(props) {
   return popupFormToggleWrapper;
 }
 
-function createHeader ({ newForm, title, tagline }) {
+function createHeader ({ newForm, title, tagline, closeForm }) {
   const header = createNewElement({
     elementType: 'header',
     appendTo: newForm
@@ -83,4 +91,16 @@ function createHeader ({ newForm, title, tagline }) {
       appendTo: header
     });  
   }
+
+  createNewElement({
+    elementType: 'button',
+    staticProps: {
+      textContent: '+',
+      className: 'remove-button'
+    },
+    clickHandler: (e) => { 
+      closeForm();
+    },
+    appendTo: header
+  });
 }
