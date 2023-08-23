@@ -1,64 +1,5 @@
-.gptExtendedWrapper {
-  display: flex;
-  padding: .5rem 0 0 1rem;
-  font-size: .9rem;
-}
-
-.gptExtendedWrapper > * {
-  margin-right: 1rem;
-}
-
-.promptEditorWrapper {
-  display: flex;
-  flex-direction: row;  
-}
-
-.presetSelectorWrapper {
-  position: relative;
-  margin-right: .5rem;
-}
-
-.presetSelector {
-  cursor: pointer;
-  padding-right: .2rem;
-}
-
-.presetSelector:after {
-  content: "▼";
-  position: relative;
-  top: 1px;
-  padding-left: .25rem;
-  font-size: .9rem;
-  color: #fff;
-}
-
-.presetOptionsWrapper {
-  display:none;
-  position: absolute; 
-  bottom: 25px;
-  left: 0px;
-  min-width: 200px;
-  background: #222;
-  border: 1px solid #888;
-  box-shadow: 10px 10x 0, #666;
-}
-
-.presetOptionsWrapper > div {
-  padding: .5rem 1rem;
-  cursor: pointer;
-}
-
-.presetOptionsWrapper > div:hover {
-  padding: .5rem 1rem;
-  background: #555;
-}
-
-.presetOptionsWrapper > div:not(:last-of-type) {
-  border-bottom: 1px solid #888;
-}
-
-.presetSelectorWrapper[data-is-open="true"] .presetOptionsWrapper {
-  display:block;
+button.popupFormToggle {
+  text-decoration: underline;
 }
 
 .form-overlay {
@@ -70,10 +11,6 @@
   right:0;
   z-index: 99;
   background: rgba(52,53,65,.9);
-}
-
-button.popupFormToggle {
-  text-decoration: underline;
 }
 
 .popupFormWrapper {

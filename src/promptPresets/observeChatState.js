@@ -25,7 +25,7 @@ async function observeChatState() {
       if ( !headerElement ) {
         const promptPresetWidget = document.querySelector('.promptPresetWidgetWrapper');        
         if ( !promptPresetWidget ) { await initStarterPromptWidget({ promptPresetWrapper }); }
-      }  
+      }
     }
 
     setTimeout(poll, interval);

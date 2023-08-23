@@ -18,7 +18,8 @@ const observePromptMessage = ({ clipboardWrapper }) => {
     }
 
     const clipboardData = await asyncLoad(CLIPBOARD_FORM_DATA_KEY);
-    const replacements = clipboardData?.[CLIPBOARD_ADDITIONAL_FIELDS_KEY]?.slice().sort((a, b) => b.name.length - a.name.length) || [];
+    const replacements = clipboardData?.[CLIPBOARD_ADDITIONAL_FIELDS_KEY]?.slice()
+      .sort((a, b) => b.name.length - a.name.length) || [];
 
     keyupListener = debounce(async () => {
       if (replacements.length) {

@@ -1,4 +1,3 @@
-
 function createPopupFormWidget(props) {
   const { 
     parent, 
