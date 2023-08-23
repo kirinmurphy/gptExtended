@@ -7,14 +7,14 @@ function createPromptPresetWidget () {
     title: 'Chat Instructions',
     tagline: 'Add instructions to set up a chat with a specific context.',
     toggleText: 'instructions',
-    createPopupFormFields,
+    createPopupFormFields: createPresetPopupFormFields,
     saveAction: savePromptPresets
   });  
   
   return promptPresetWidget;
 }
 
-async function createPopupFormFields ({ newForm }) {
+async function createPresetPopupFormFields ({ newForm }) {
 
   newForm.appendChild(await createTextarea({ 
     appendTo: newForm,
