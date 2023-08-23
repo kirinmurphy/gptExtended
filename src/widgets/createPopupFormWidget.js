@@ -33,42 +33,22 @@ function createPopupFormWidget(props) {
         appendTo: parent
       });
 
-      const header = createNewElement({
-        elementType: 'header',
-        appendTo: newForm
-      });  
+      createHeader ({ newForm, title, tagline, closeForm });
 
-      createNewElement({
-        elementType: 'h3',
-        staticProps: { textContent: title },
-        appendTo: header
-      });  
+      await createPopupFormFields({ 
+        newForm,
+        parent
+      });
 
-      if ( tagline ) {
-        createNewElement({
-          elementType: 'div',
-          staticProps: { 
-            className: 'tagline',
-            innerHTML: tagline 
-          },
-          appendTo: header
-        });  
-      }
+      createActionsFooter({ newForm, closeForm, saveAction }); 
+
+      popupFormToggle.style.display = 'none';  
 
       function closeForm (newForm) {
         newForm.parentNode.removeChild(newForm);
         newFormOverlay.parentNode.removeChild(newFormOverlay);
         popupFormToggle.removeAttribute('style');
       }
-    
-      await createPopupFormFields({ 
-        newForm,
-        appendTo: parent
-      });
-
-      createActionsFooter({ newForm, closeForm, saveAction }); 
-
-      popupFormToggle.style.display = 'none';  
     }
   });
 
@@ -79,4 +59,28 @@ function createPopupFormWidget(props) {
   });
 
   return popupFormToggleWrapper;
+}
+
+function createHeader ({ newForm, title, tagline }) {
+  const header = createNewElement({
+    elementType: 'header',
+    appendTo: newForm
+  });  
+
+  createNewElement({
+    elementType: 'h3',
+    staticProps: { textContent: title },
+    appendTo: header
+  });  
+
+  if ( tagline ) {
+    createNewElement({
+      elementType: 'div',
+      staticProps: { 
+        className: 'tagline',
+        innerHTML: tagline 
+      },
+      appendTo: header
+    });  
+  }
 }

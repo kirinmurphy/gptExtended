@@ -1,8 +1,8 @@
 chrome.storage.onChanged.addListener(async function(changes, namespace) {  
-  if ( !changes.formData ) { return; }
+  if ( !changes.formData || !changes.formData.newValue ) { return; }
 
   const presetSelectorWrapper = document.querySelector('.presetSelectorWrapper');
-  while (presetSelectorWrapper.firstChild) {
+  while (presetSelectorWrapper?.firstChild) {
     presetSelectorWrapper.removeChild(presetSelectorWrapper.firstChild);
   }
   
