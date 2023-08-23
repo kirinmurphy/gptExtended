@@ -10,14 +10,14 @@ function createClipboardWidget ({ clipboardWrapper }) {
     title: 'Clipboard',
     tagline: 'Save commonly used text snippets to re-use in/across chats.  Type the <strong>#keyword</strong> into your chat message to popuplate the clipboard text.',
     toggleText: 'clipboard',
-    createPopupFormFields,
+    createPopupFormFields: createClipboardPopupFormFields,
     saveAction: savePromptClipboardEntries
   });  
   
   return clipboardWidget;
 }
 
-async function createPopupFormFields ({ newForm, parent }) {
+async function createClipboardPopupFormFields ({ newForm, parent }) {
   createAddMoreFieldsetsWidget({ 
     newForm,
     addMoreButtonText: 'Add More Clipboard Items',
