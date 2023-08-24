@@ -1,5 +1,6 @@
 async function observeChatState() {
   const interval = 1000; // 1 second interval
+  let presetReverted = false;
 
   async function poll() {
     const headerElement = document.querySelector('header.sticky');

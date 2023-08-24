@@ -1,13 +1,5 @@
 const DEBOUNCE_TIMEOUT = 500;
 
-const replaceKeywords = (prompt, replacements) => {
-  return replacements.reduce((updatedMessage, { name, message }) => {
-    const keywordExists = updatedMessage.includes(name);
-    const newReplacement = `\n\n${message}\n`;
-    return keywordExists ? updatedMessage.split(name).join(newReplacement) : updatedMessage;
-  }, prompt);
-};
-
 const observePromptMessage = ({ clipboardWrapper }) => {
   const textarea = document.querySelector('main form:first-of-type textarea');
   let keyupListener;
@@ -36,4 +28,12 @@ const observePromptMessage = ({ clipboardWrapper }) => {
   });
 
   createClipboardWidget({ clipboardWrapper });
+};
+
+const replaceKeywords = (prompt, replacements) => {
+  return replacements.reduce((updatedMessage, { name, message }) => {
+    const keywordExists = updatedMessage.includes(name);
+    const newReplacement = `\n\n${message}\n`;
+    return keywordExists ? updatedMessage.split(name).join(newReplacement) : updatedMessage;
+  }, prompt);
 };
