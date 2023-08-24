@@ -32,7 +32,7 @@
                 "src/widgets/createNewFormOverlay.js",
                 "src/widgets/createAddMoreFieldsetsWidget.js",
                 "src/clipboard/createClipboardWidget.js",
-                "src/clipboard/index.js",
+                "src/clipboard/observePromptMessage.js",
                 "src/clipboard/saveClipboardEntries.js",
                 "content.js"
             ],
