@@ -1,6 +1,6 @@
 function postPresets ({ data, selectedValue }) {
-  const { about_user_message, about_model_message_default, additional_prompts } = data;
-  const additionalPromptMessage = additional_prompts.filter(({ uuid }) => uuid === selectedValue)[0]?.message;
+  const { about_user_message, about_model_message_default, additional_prompts } = data || {};
+  const additionalPromptMessage = additional_prompts?.filter(({ uuid }) => uuid === selectedValue)[0]?.message;
   const about_model_message = `${about_model_message_default} ${additionalPromptMessage || ''}`; 
 
   const requestBody = {

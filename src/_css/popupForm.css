@@ -72,12 +72,6 @@ button.popupFormToggle {
   margin-bottom: .5rem;
 }
 
-.popupForm input,
-.popupForm textarea {
-  background: rgb(52,53,65);
-  border-radius: 4px;
-}
-
 .popupForm .addMoreButtonWrapper {
   display: flex;
   gap: 1rem;

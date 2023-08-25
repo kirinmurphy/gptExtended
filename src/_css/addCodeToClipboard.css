@@ -1,0 +1,27 @@
+.addCodeToClipboardFormWrapper {
+  margin-top: -1.15rem;
+  background: #223;
+  padding: .4rem;
+  border-radius: 0 0 8px 8px;
+  text-align: right;
+  font-size: .85rem;
+}
+
+.addCodeToClipboardFormWrapper form > * {
+  margin-left: .5rem;
+}
+ 
+.addCodeToClipboardFormWrapper form > input {
+  padding: 3px 6px;
+  font-size: .85rem;
+}
+
+.addCodeToClipboardFormWrapper form > button {
+  padding: 5px 10px;
+  font-size: .85rem;
+}
+
+.addCodeToClipboardFormWrapper .savedMessage {
+  margin-right: .5rem;
+  cursor: pointer;
+}

@@ -31,15 +31,19 @@
                 "src/widgets/createPopupFormWidget.js",
                 "src/widgets/createNewFormOverlay.js",
                 "src/widgets/createAddMoreFieldsetsWidget.js",
-                "src/clipboard/createClipboardWidget.js",
                 "src/clipboard/observePromptMessage.js",
+                "src/clipboard/createClipboardWidget.js",
+                "src/clipboard/initCodeSnippetObserver.js",
+                "src/clipboard/createInjectedCodeClipboardForm.js",
                 "src/clipboard/saveClipboardEntries.js",
                 "content.js"
             ],
             "css": [
+                "src/_css/forms.css",
                 "src/_css/styles.css",
                 "src/_css/popupForm.css",
-                "src/_css/presetSelector.css"
+                "src/_css/presetSelector.css",
+                "src/_css/addCodeToClipboard.css"
             ]
         }
     ],
