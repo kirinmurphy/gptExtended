@@ -100,10 +100,10 @@ function insertAdditionalFieldset (props) {
   const starterName = createNewElement({
     elementType: 'input',
     staticProps: {
+      type: 'text',
       name: `additional_option_${index}_name`,
       placeholder: label,
       required: true,
-      className: 'mb-1 border border-gray-400',
       value: !!savedValue ? savedValue.name : null
     }
   });

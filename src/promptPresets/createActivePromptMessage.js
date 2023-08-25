@@ -12,8 +12,8 @@ async function createActivePromptMessage () {
   chrome.storage.onChanged.addListener(async function(changes, namespace) {
     if ( !changes.selectedPreset ) { return; }
     const selectedPreset = changes.selectedPreset.newValue;
-    const { additional_prompts } = await asyncLoad('formData');
-    const selectionName = additional_prompts.filter(({ uuid }) => uuid === selectedPreset)[0]?.name;
+    const { additional_prompts } = await asyncLoad('formData') || {};
+    const selectionName = additional_prompts?.filter(({ uuid }) => uuid === selectedPreset)[0]?.name;
   
     const hasAdditionalPromptActiveMessage = !!selectedPreset 
       && selectedPreset !== 'default'
