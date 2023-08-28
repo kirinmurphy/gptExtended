@@ -1,0 +1,30 @@
+input[type="text"],
+.popupForm textarea {
+  background: rgb(52,53,65);
+  border-radius: 4px;
+}
+
+.errors {
+  color: red;
+}
+
+.dropdown {
+  position: absolute;
+  background: #222;
+  border: 1px solid #888;
+  box-shadow: 10px 10x 0, #666;
+  min-width: 200px;
+}
+
+.dropdown > div {
+  padding: .5rem 1rem;
+  cursor: pointer;
+}
+
+.dropdown > div:hover {
+  background: #555;
+}
+
+.dropdown > div:not(:last-of-type) {
+  border-bottom: 1px solid #888;
+}

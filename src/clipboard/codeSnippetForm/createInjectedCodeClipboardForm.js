@@ -20,20 +20,20 @@ function createInjectedCodeClipboardForm(codeElement) {
     }   
   });
 
-  const input = createNewElement({
-    elementType: 'input',
-    staticProps: {
-      type: 'text',
-      placeholder: '#keyword'
-    }
-  });
-
   const button = createNewElement({
     elementType: 'button',
     staticProps: {
       textContent: 'Save',
       className: 'btn btn-primary',
       disabled: true
+    }
+  });
+
+  const input = createNewElement({
+    elementType: 'input',
+    staticProps: {
+      type: 'text',
+      placeholder: '#keyword'
     }
   });
 
@@ -46,6 +46,8 @@ function createInjectedCodeClipboardForm(codeElement) {
     const errorElement = parentForm.querySelector('.errors');
     if (errorElement && e.key !== 'ENTER' ) { errorElement.remove(); }
   });
+
+  attachPoundSignListener(input, button);  
   
   button.addEventListener('click', async () => {
     button.disabled = true;

@@ -7,7 +7,8 @@ async function createAddMoreFieldsetsWidget (props) {
     additionalOptionInstruction,
     formFieldText,
     savedFormDataKey,
-    savedFormAdditionalFieldsKey
+    savedFormAdditionalFieldsKey,
+    nameFieldCallback
   } = props;
 
   const addMoreButtonWrapper = createNewElement({
@@ -36,7 +37,8 @@ async function createAddMoreFieldsetsWidget (props) {
           newForm, 
           addMoreButtonWrapper, 
           index: fieldsetCount, 
-          formFieldText 
+          formFieldText,
+          nameFieldCallback
         });
         fieldsetCount++;  
         newForm.scrollTop = newForm.scrollHeight;
@@ -69,7 +71,8 @@ async function createAddMoreFieldsetsWidget (props) {
         addMoreButtonWrapper, 
         index, 
         savedValue,
-        formFieldText
+        formFieldText,
+        nameFieldCallback
       });
     });
   
@@ -85,7 +88,8 @@ function insertAdditionalFieldset (props) {
     addMoreButtonWrapper, 
     index, 
     savedValue,
-    formFieldText: { label, message }
+    formFieldText: { label, message },
+    nameFieldCallback
   } = props;
 
   const hiddenInput = createNewElement({
@@ -107,6 +111,8 @@ function insertAdditionalFieldset (props) {
       value: !!savedValue ? savedValue.name : null
     }
   });
+
+  nameFieldCallback && nameFieldCallback(starterName);
 
   const starterMessage = createNewElement({
     elementType: 'textarea',
