@@ -26,7 +26,8 @@ async function createClipboardPopupFormFields ({ newForm, parent }) {
       message: 'Clipboard Text'
     },
     savedFormDataKey: CLIPBOARD_FORM_DATA_KEY,
-    savedFormAdditionalFieldsKey: CLIPBOARD_ADDITIONAL_FIELDS_KEY
+    savedFormAdditionalFieldsKey: CLIPBOARD_ADDITIONAL_FIELDS_KEY,
+    nameFieldCallback: (input) => { attachPoundSignListener(input); }
   });
 
   await triggerDefaultFirstField({ parent });

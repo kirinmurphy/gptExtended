@@ -21,7 +21,7 @@ async function observeChatState() {
     if ( !gptExtendedWrapper ) {
       const { promptPresetWrapper, clipboardWrapper } = initGptExtended();
 
-      observePromptMessage({ clipboardWrapper });
+      await observePromptMessage({ clipboardWrapper });
 
       if ( !headerElement ) {
         const promptPresetWidget = document.querySelector('.promptPresetWidgetWrapper');        

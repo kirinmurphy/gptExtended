@@ -27,7 +27,7 @@ async function loadPresetSelector ({ presetSelectorWrapper, additionalPrompts })
   const presetOptionsWrapper = createNewElement({
     elementType: 'div',
     staticProps: {
-      className: 'presetOptionsWrapper'
+      className: 'presetOptionsWrapper dropdown'
     },
     appendTo: presetSelectorWrapper
   });

@@ -1,9 +1,0 @@
-input[type="text"],
-.popupForm textarea {
-  background: rgb(52,53,65);
-  border-radius: 4px;
-}
-
-.errors {
-  color: red;
-}
