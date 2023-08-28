@@ -6,6 +6,10 @@ const defaultPromptOptions = {
 };
 
 async function loadPresetSelector ({ presetSelectorWrapper, additionalPrompts }) {
+  observeClickOutside('.presetSelector', () => {
+    presetSelectorWrapper.setAttribute('data-is-open', false);
+  });
+  
   const presetSelector = createNewElement({
     elementType: 'div',
     staticProps: { 

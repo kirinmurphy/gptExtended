@@ -13,6 +13,7 @@
                 "src/utils/adjustTextareaHeight.js",
                 "src/utils/triggerKeypress.js",
                 "src/utils/debounce.js",
+                "src/utils/observeClickOutside.js",
                 "src/utils/createNewElement.js",
                 "src/utils/generateUUID.js",
                 "src/utils/saveFormElements.js",
@@ -33,9 +34,10 @@
                 "src/widgets/createAddMoreFieldsetsWidget.js",
                 "src/clipboard/observePromptMessage.js",
                 "src/clipboard/createClipboardWidget.js",
-                "src/clipboard/initCodeSnippetObserver.js",
-                "src/clipboard/createInjectedCodeClipboardForm.js",
                 "src/clipboard/saveClipboardEntries.js",
+                "src/clipboard/codeSnippetForm/initCodeSnippetObserver.js",
+                "src/clipboard/codeSnippetForm/createInjectedCodeClipboardForm.js",
+                "src/clipboard/codeSnippetForm/saveSnippetToClipboard.js",
                 "content.js"
             ],
             "css": [
