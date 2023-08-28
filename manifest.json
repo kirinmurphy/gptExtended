@@ -27,6 +27,7 @@
                 "src/promptPresets/presetFormWidget/savePromptPresets.js",
                 "src/promptPresets/presetSelectorWidget/loadPresetSelector.js",
                 "src/promptPresets/presetSelectorWidget/index.js",
+                "src/widgets/checkForDuplicateFieldEntries.js",
                 "src/widgets/createTextarea.js",
                 "src/widgets/createActionsFooter.js",
                 "src/widgets/createPopupFormWidget.js",

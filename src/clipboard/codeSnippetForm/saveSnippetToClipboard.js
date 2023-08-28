@@ -2,7 +2,11 @@ async function saveSnippetToClipboard ({ codeElement, input, form, formWrapper }
 
   try {
     const clipboardData = await asyncLoad(CLIPBOARD_FORM_DATA_KEY) || {};
-    const additionalFields = clipboardData[CLIPBOARD_ADDITIONAL_FIELDS_KEY];
+    const additionalFields = clipboardData[CLIPBOARD_ADDITIONAL_FIELDS_KEY] || [];
+
+    const isNameDuplicate = additionalFields.some(field => field.name === input.value);
+    if (isNameDuplicate) { throw new Error("DuplicateName"); }
+
     const codeSnippet = codeElement.querySelector('code').innerText;
     const trimmedCodeSnippet = codeSnippet.replace(/[\r\n]+$/, '')
     const newClipboardItem = {
@@ -19,7 +23,20 @@ async function saveSnippetToClipboard ({ codeElement, input, form, formWrapper }
       formStorageKey: CLIPBOARD_FORM_DATA_KEY, 
       formattedFormData: clipboardData
     });
-  } catch (error) {}
+    
+  } catch (error) {
+    if (error.message === "DuplicateName") {
+      createNewElement({
+        elementType: 'div',
+        staticProps: {
+          className: 'errors',
+          innerHTML: "This name already exists."
+        },
+        appendTo: form
+      });
+    }
+    return;    
+  }
 
   form.parentNode.removeChild(form);
 

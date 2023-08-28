@@ -107,7 +107,7 @@ function insertAdditionalFieldset (props) {
       value: !!savedValue ? savedValue.name : null
     }
   });
-  
+
   const starterMessage = createNewElement({
     elementType: 'textarea',
     staticProps: {
@@ -142,4 +142,6 @@ function insertAdditionalFieldset (props) {
   }); 
 
   newForm.insertBefore(fieldset, addMoreButtonWrapper);
+
+  checkForDuplicateFieldEntries(starterName);
 }

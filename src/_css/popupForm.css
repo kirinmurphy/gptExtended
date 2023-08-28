@@ -72,6 +72,10 @@ button.popupFormToggle {
   margin-bottom: .5rem;
 }
 
+.popupForm .errors {
+  margin-bottom: .5rem;
+}
+
 .popupForm .addMoreButtonWrapper {
   display: flex;
   gap: 1rem;
