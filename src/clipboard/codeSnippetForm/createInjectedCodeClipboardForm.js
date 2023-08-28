@@ -41,6 +41,12 @@ function createInjectedCodeClipboardForm(codeElement) {
     button.disabled = !input.value;
   });
 
+  input.addEventListener('keydown', (e) => {
+    const parentForm = input.closest('form');    
+    const errorElement = parentForm.querySelector('.errors');
+    if (errorElement && e.key !== 'ENTER' ) { errorElement.remove(); }
+  });
+  
   button.addEventListener('click', async () => {
     button.disabled = true;
     await saveSnippetToClipboard({ codeElement, input, form, formWrapper });

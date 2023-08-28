@@ -3,7 +3,7 @@ function createActionsFooter ({ newForm, closeForm, saveAction }) {
     elementType: 'button',
     staticProps: {
       textContent: 'Save',
-      className: 'btn btn-primary'
+      className: 'btn btn-primary submitForm'
     },
     clickHandler: function (e) {
       e.preventDefault();
