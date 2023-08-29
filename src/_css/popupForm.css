@@ -39,6 +39,9 @@ button.popupFormToggle {
   position: absolute;
   top: 8px; 
   right: 0;
+}
+
+.popupForm .remove-button {
   transform: rotate(45deg) scale(1.5);
   font-size: 1.5rem;  
 }
@@ -49,6 +52,13 @@ button.popupFormToggle {
 
 .popupForm > header .remove-button {
   right: 20px;
+}
+
+.popupForm .clearField {
+  position: absolute;
+  top: 16px;
+  right: 4px;  
+  cursor:pointer;
 }
 
 .popupForm textarea {
