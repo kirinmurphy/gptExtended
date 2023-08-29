@@ -13,7 +13,8 @@ function savePromptClipboardEntries ({ newForm }) {
           const message = input[`additional_option_${index}_message`];
           const uuid = input[`additional_option_${index}_uuid`];
           return { name, message, uuid };
-        });
+        })
+        .filter(item => !!item.name);
 
       const returnObject = {};
       returnObject[CLIPBOARD_ADDITIONAL_FIELDS_KEY] = clipboardItems;

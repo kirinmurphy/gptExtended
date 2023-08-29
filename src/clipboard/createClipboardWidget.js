@@ -33,15 +33,3 @@ async function createClipboardPopupFormFields ({ newForm, parent }) {
   await triggerDefaultFirstField({ parent });
 }
 
-async function triggerDefaultFirstField ({ parent }) {
-  const clipboardData = await asyncLoad(CLIPBOARD_FORM_DATA_KEY) || {};
-  if ( !clipboardData[CLIPBOARD_ADDITIONAL_FIELDS_KEY]?.length ) {
-    const addMoreButton = parent.querySelector('.addMoreButton');
-    if (addMoreButton) { 
-      addMoreButton.click(); 
-    }   
-  }
-
-  const firstFieldsetRemoveButton = parent.querySelector('fieldset .remove-button');
-  firstFieldsetRemoveButton.remove();            
-}
