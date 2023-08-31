@@ -1,18 +1,18 @@
 input[type="text"],
 .popupForm textarea {
-  background: rgb(52,53,65);
+  background: var(--gpt-ext-bg-input);
   border-radius: 4px;
 }
 
 .errors {
-  color: red;
+  color: var(--gpt-ext-error-color);
 }
 
 .dropdown {
   position: absolute;
-  background: #222;
-  border: 1px solid #888;
-  box-shadow: 10px 10x 0, #666;
+  background: var(--gpt-ext-bg-dropdown);
+  border: 1px solid var(--gpt-ext-border-color);
+  box-shadow: 5px 5px 5px var(--gpt-ext-shadow-color);
   min-width: 200px;
 }
 
@@ -22,9 +22,9 @@ input[type="text"],
 }
 
 .dropdown > div:hover {
-  background: #555;
+  background: var(--gpt-ext-hover-bg-dropdown-item);
 }
 
 .dropdown > div:not(:last-of-type) {
-  border-bottom: 1px solid #888;
+  border-bottom: 1px solid var(--gpt-ext-border-color);
 }

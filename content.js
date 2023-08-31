@@ -6,6 +6,8 @@ chrome.runtime.onMessage.addListener(
 
 observeChatState();
 
+document.body.classList.add("gpt-ext-root");
+
 // shrug?  fires before page leaves, but doesn't wait for response
 // seems to work :/
 window.addEventListener('beforeunload', async function (event) {

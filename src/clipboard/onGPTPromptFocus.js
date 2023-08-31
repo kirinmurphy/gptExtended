@@ -1,6 +1,5 @@
 
 async function onGPTPromptFocus ({ textarea, checkForKeywordListener, typeaheadListener }) {
-
   if (checkForKeywordListener) {
     textarea.removeEventListener('keyup', checkForKeywordListener);
   }
@@ -50,7 +49,7 @@ function getPartialMatchers({ textarea, replacements }) {
 
   const textUpToCursor = text.substring(0, cursorPosition);
 
-  const regex = /#([a-zA-Z0-9-_]*)$/; // Matching empty string after #
+  const regex = /#([a-zA-Z0-9-_]*)$/; 
   const match = regex.exec(textUpToCursor);  
 
   const lastMatch = match ? match[1] : null;
@@ -78,9 +77,10 @@ function replaceLastOccurrenceAndTriggerKeyup({ textarea, lastMatch, matcher }) 
     setTimeout(() => {
       const startPosition = textarea.value.indexOf(afterMatch);
       if (startPosition !== -1) {
-          textarea.setSelectionRange(startPosition, startPosition);
+        textarea.setSelectionRange(startPosition, startPosition);
       }
-    }, 500);
+      textarea.scrollTop = textarea.scrollHeight;
+    }, 700);
 
   }
 }

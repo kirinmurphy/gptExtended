@@ -1,0 +1,28 @@
+html.light {
+  --gpt-ext-bg-color: #EDEDED;
+  --gpt-ext-text-color: #000;
+  --gpt-ext-bg-input: #F2F2F2;
+  --gpt-ext-bg-dropdown: #FFFFFF;
+  --gpt-ext-border-color: #333;
+  --gpt-ext-shadow-color: #999;
+  --gpt-ext-hover-bg-dropdown-item: #EEE;
+  --gpt-ext-error-color: red;
+  --gpt-ext-overlay-bg: rgba(242,242,242,.9);
+  --gpt-ext-popup-bg: rgba(255,255,255,1);
+  --gpt-ext-footer-bg: rgba(255,255,255,1);
+  --gpt-ext-arrow-color: #333;
+}
+
+html.dark {
+  --gpt-ext-bg-color: #223;
+  --gpt-ext-text-color: #FFF;
+  --gpt-ext-bg-input: rgb(52,53,65);
+  --gpt-ext-bg-dropdown: #222;
+  --gpt-ext-border-color: #888;
+  --gpt-ext-shadow-color: #333;
+  --gpt-ext-hover-bg-dropdown-item: #555;
+  --gpt-ext-overlay-bg: rgba(52,53,65,.9);
+  --gpt-ext-popup-bg: rgba(32,33,35,1);
+  --gpt-ext-footer-bg: rgba(32,33,35,1);
+  --gpt-ext-arrow-color: #fff;
+}
