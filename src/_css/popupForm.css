@@ -10,7 +10,7 @@ button.popupFormToggle {
   bottom:0;
   right:0;
   z-index: 99;
-  background: rgba(52,53,65,.9);
+  background: var(--gpt-ext-overlay-bg);
 }
 
 .popupFormWrapper {
@@ -22,8 +22,8 @@ button.popupFormToggle {
   width:80vw;
   max-width: 800px;
   border-radius: 8px;
-  box-shadow: 10px 10px 0, #000;
-  background: rgba(32,33,35,1);
+  box-shadow: 5px 5px 5px var(--gpt-ext-shadow-color);
+  background: var(--gpt-ext-popup-bg);
 }
 
 .popupForm {
@@ -99,7 +99,7 @@ button.popupFormToggle {
   bottom:0;
   right:0; 
   padding:1.5rem 2rem ;
-  background: rgba(32,33,35,1);
+  background: var(--gpt-ext-footer-bg);
 }
 
 .popupForm .formActionsFooter button {
