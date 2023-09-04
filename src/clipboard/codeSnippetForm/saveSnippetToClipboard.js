@@ -1,8 +1,10 @@
-async function saveSnippetToClipboard ({ codeElement, input, form, formWrapper }) {
+async function saveSnippetToClipboard (props) {
+  const { snippetContainer, input, form, formWrapper, onAfterSaveCallback } = props;
+
   const clipboardData = await asyncLoad(CLIPBOARD_FORM_DATA_KEY) || {};
   const additionalFields = clipboardData[CLIPBOARD_ADDITIONAL_FIELDS_KEY] || [];
 
-  const codeSnippet = codeElement.querySelector('code').innerText;
+  const codeSnippet = snippetContainer.innerText;
   const trimmedCodeSnippet = codeSnippet.replace(/[\r\n]+$/, '')
 
   const inputValue = input.value;
@@ -25,6 +27,8 @@ async function saveSnippetToClipboard ({ codeElement, input, form, formWrapper }
       formStorageKey: CLIPBOARD_FORM_DATA_KEY, 
       formattedFormData: clipboardData
     });
+
+    if ( onAfterSaveCallback ) { onAfterSaveCallback(); }
     
   } catch (error) {
     if (error.message === "DuplicateName") {

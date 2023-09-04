@@ -16,4 +16,5 @@ async function observePromptMessage ({ clipboardWrapper }) {
 
   createClipboardWidget({ clipboardWrapper });
   initCodeSnippetObserver();
+  initCopySelection();
 };

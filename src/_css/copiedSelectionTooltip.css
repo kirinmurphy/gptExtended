@@ -1,0 +1,13 @@
+.copiedSelectionTooltip {
+  max-width: 600px;
+  border: 1px solid var(--gpt-ext-border-color);
+  background: var(--gpt-ext-popup-bg);
+  box-shadow: 5px 5px 5px var(--gpt-ext-shadow-color);
+}
+
+.copiedSelectionContents {
+  padding: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

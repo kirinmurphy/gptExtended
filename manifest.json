@@ -18,6 +18,7 @@
                 "src/utils/observeClickOutside.js",
                 "src/utils/createNewElement.js",
                 "src/utils/generateUUID.js",
+                "src/utils/findScrollingAncestor.js",
                 "src/utils/saveFormElements.js",
                 "src/promptPresets/createActivePromptMessage.js",
                 "src/promptPresets/onChangeListener.js",
@@ -38,11 +39,13 @@
                 "src/clipboard/observePromptMessage.js",
                 "src/clipboard/onGPTPromptFocus.js",
                 "src/clipboard/checkForKeywordInPrompt.js",
+                "src/clipboard/getSnippetClipboardForm.js",
+                "src/clipboard/copySelection/initCopySelection.js",
+                "src/clipboard/copySelection/getSelectionCopyFormPositioning.js",
                 "src/clipboard/clipboardForm/createClipboardWidget.js",
                 "src/clipboard/clipboardForm/saveClipboardEntries.js",
                 "src/clipboard/clipboardForm/triggerDefaultFirstField.js",
                 "src/clipboard/codeSnippetForm/initCodeSnippetObserver.js",
-                "src/clipboard/codeSnippetForm/createInjectedCodeClipboardForm.js",
                 "src/clipboard/codeSnippetForm/saveSnippetToClipboard.js",
                 "content.js"
             ],
@@ -52,7 +55,8 @@
                 "src/_css/styles.css",
                 "src/_css/popupForm.css",
                 "src/_css/presetSelector.css",
-                "src/_css/addCodeToClipboard.css"
+                "src/_css/addCodeToClipboard.css",
+                "src/_css/copiedSelectionTooltip.css"
             ]
         }
     ],

@@ -21,6 +21,7 @@ html.dark {
   --gpt-ext-border-color: #888;
   --gpt-ext-shadow-color: #333;
   --gpt-ext-hover-bg-dropdown-item: #555;
+  --gpt-ext-error-color: red;
   --gpt-ext-overlay-bg: rgba(52,53,65,.9);
   --gpt-ext-popup-bg: rgba(32,33,35,1);
   --gpt-ext-footer-bg: rgba(32,33,35,1);

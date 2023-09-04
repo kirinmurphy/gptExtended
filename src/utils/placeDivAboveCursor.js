@@ -1,3 +1,28 @@
+function placeDivAboveCursor({ textarea, classNames }) {
+  const VERTICAL_OFFSET = 40;
+  const matchingSelector = '.' + classNames.replace(/ /g, '.') 
+  let keywordMatcherDiv = document.querySelector(matchingSelector);
+
+  if (!keywordMatcherDiv) {
+    const { bottom, left } = getCursorCoordinates(textarea);
+
+    keywordMatcherDiv = createNewElement({
+      elementType: 'div',
+      staticProps: {
+        className: classNames,
+        style: `position: absolute; bottom: ${bottom + VERTICAL_OFFSET}px; left: ${left}px;`
+      },
+      appendTo: textarea.parentElement
+    });
+  } else {
+    const { bottom, left } = getCursorCoordinates(textarea);
+    keywordMatcherDiv.style.bottom = `${bottom + VERTICAL_OFFSET}px`;
+    keywordMatcherDiv.style.left = `${left}px`;
+  }
+
+  return keywordMatcherDiv;
+}
+
 function getCursorCoordinates(textarea) {
   const computedStyle = window.getComputedStyle(textarea);
   const lineHeight = parseFloat(computedStyle.lineHeight);
@@ -36,28 +61,3 @@ function getCursorCoordinates(textarea) {
   return coordinates;
 }
 
-
-function placeDivAboveCursor(textarea) {
-  const VERTICAL_OFFSET = 40;
-  let keywordMatcherDiv = document.querySelector('.possibleMatchers');
-
-  if (!keywordMatcherDiv) {
-    const { bottom, left } = getCursorCoordinates(textarea);
-
-    keywordMatcherDiv = createNewElement({
-      elementType: 'div',
-      staticProps: {
-        innerHTML: 'hello',
-        className: 'possibleMatchers dropdown',
-        style: `position: absolute; bottom: ${bottom + VERTICAL_OFFSET}px; left: ${left}px;`
-      },
-      appendTo: textarea.parentElement
-    });
-  } else {
-    const { bottom, left } = getCursorCoordinates(textarea);
-    keywordMatcherDiv.style.bottom = `${bottom + VERTICAL_OFFSET}px`;
-    keywordMatcherDiv.style.left = `${left}px`;
-  }
-
-  return keywordMatcherDiv;
-}
