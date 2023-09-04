@@ -18,7 +18,7 @@ async function onGPTPromptFocus ({ textarea, checkForKeywordListener, typeaheadL
 
   typeaheadListener = () => {
     const { lastMatch, filteredNames } = getPartialMatchers({ textarea, replacements });
-    const keywordMatcherDiv = placeDivAboveCursor(textarea);
+    const keywordMatcherDiv = placeDivAboveCursor({ textarea, classNames: 'possibleMatchers dropdown' });
 
     if ( !!filteredNames.length ) {
       keywordMatcherDiv.innerHTML = '';

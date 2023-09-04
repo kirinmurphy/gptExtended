@@ -28,3 +28,13 @@ function initCodeSnippetObserver () {
   const observer = new MutationObserver(mutationCallback);
   observer.observe(mainElement, observerConfig);
 } 
+
+function createInjectedCodeClipboardForm(preElement) {
+  const snippetContainer = preElement.querySelector('code');
+  const formWrapper = getSnippetClipboardForm({ snippetContainer });
+  formWrapper.classList.add('injectedCodeClipboardForm');
+
+  setTimeout(() => {
+    preElement.insertAdjacentElement('afterend', formWrapper);
+  }, 1000);
+}

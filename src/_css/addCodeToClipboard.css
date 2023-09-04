@@ -1,5 +1,9 @@
-.addCodeToClipboardFormWrapper {
+.injectedCodeClipboardForm {
   margin-top: -1.15rem;
+  margin-bottom: 1rem;
+}
+
+.addCodeToClipboardFormWrapper {
   padding: .4rem;
   border-radius: 0 0 8px 8px;
   background: var(--gpt-ext-bg-color);
@@ -29,6 +33,12 @@
 
 .addCodeToClipboardFormWrapper .errors {
   padding-top: .5rem;
+}
+
+.addCodeToClipboardFormWrapper .errors a {
+  font-weight: bold;
+  color: var(--gpt-ext-text-color);
+  text-decoration: underline;
 }
 
 .possibleMatchers > div {

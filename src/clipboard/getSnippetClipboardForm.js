@@ -1,10 +1,10 @@
 const ALREADY_ADDED_CLASS = 'codeAlreadyAdded';
 
-function createInjectedCodeClipboardForm(codeElement) { 
-  const hasClass = codeElement.classList.contains(ALREADY_ADDED_CLASS);
+function getSnippetClipboardForm({ snippetContainer, onAfterSaveCallback }) { 
+  const hasClass = snippetContainer.classList.contains(ALREADY_ADDED_CLASS);
   if ( hasClass ) { return; }
 
-  codeElement.classList.add(ALREADY_ADDED_CLASS);
+  snippetContainer.classList.add(ALREADY_ADDED_CLASS);
 
   const formWrapper = createNewElement({
     elementType: 'div',
@@ -16,7 +16,7 @@ function createInjectedCodeClipboardForm(codeElement) {
   const message = createNewElement({
     elementType: 'span',
     staticProps: {
-      textContent: 'Save code to clipboard'
+      textContent: 'Save to clipboard'
     }   
   });
 
@@ -51,7 +51,13 @@ function createInjectedCodeClipboardForm(codeElement) {
   
   button.addEventListener('click', async () => {
     button.disabled = true;
-    await saveSnippetToClipboard({ codeElement, input, form, formWrapper });
+    await saveSnippetToClipboard({
+      snippetContainer, 
+      input, 
+      form, 
+      formWrapper, 
+      onAfterSaveCallback 
+    });
   });
 
   const form = createNewElement({
@@ -60,7 +66,5 @@ function createInjectedCodeClipboardForm(codeElement) {
     appendTo: formWrapper
   });
 
-  setTimeout(() => {
-    codeElement.insertAdjacentElement('afterend', formWrapper);
-  }, 1000);
+  return formWrapper;
 }
