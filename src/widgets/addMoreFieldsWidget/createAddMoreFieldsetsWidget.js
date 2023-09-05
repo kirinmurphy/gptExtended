@@ -8,7 +8,8 @@ async function createAddMoreFieldsetsWidget (props) {
     formFieldText,
     savedFormDataKey,
     savedFormAdditionalFieldsKey,
-    nameFieldCallback
+    nameFieldCallback,
+    fullScreenEditor
   } = props;
 
   const addMoreButtonWrapper = createNewElement({
@@ -38,10 +39,12 @@ async function createAddMoreFieldsetsWidget (props) {
           addMoreButtonWrapper, 
           index: fieldsetCount, 
           formFieldText,
-          nameFieldCallback
+          nameFieldCallback,
+          fullScreenEditor
         });
         fieldsetCount++;  
         newForm.scrollTop = newForm.scrollHeight;
+        if ( fullScreenEditor ) { toggleLastClipboadItem(newForm); }
       }
     },
     appendTo: addMoreButtonWrapper
@@ -72,7 +75,8 @@ async function createAddMoreFieldsetsWidget (props) {
         index, 
         savedValue,
         formFieldText,
-        nameFieldCallback
+        nameFieldCallback,
+        fullScreenEditor
       });
     });
   
@@ -80,74 +84,17 @@ async function createAddMoreFieldsetsWidget (props) {
       addMoreButton.disabled = true;
     }  
   }
+
+  if ( fullScreenEditor ) { 
+    toggleLastClipboadItem(newForm); 
+    const lastTextarea = newForm.querySelector('fieldset:last-of-type textarea');
+    lastTextarea.focus();
+  }
 }
 
-function insertAdditionalFieldset (props) {
-  const { 
-    newForm, 
-    addMoreButtonWrapper, 
-    index, 
-    savedValue,
-    formFieldText: { label, message },
-    nameFieldCallback
-  } = props;
-
-  const hiddenInput = createNewElement({
-    elementType: 'input',
-    staticProps: {
-      type: 'hidden',
-      name: `additional_option_${index}_uuid`,
-      value: savedValue?.uuid || generateUUID()
-    }
-  });
-  
-  const starterName = createNewElement({
-    elementType: 'input',
-    staticProps: {
-      type: 'text',
-      name: `additional_option_${index}_name`,
-      placeholder: label,
-      required: true,
-      value: !!savedValue ? savedValue.name : null
-    }
-  });
-
-  nameFieldCallback && nameFieldCallback(starterName);
-
-  const starterMessage = createNewElement({
-    elementType: 'textarea',
-    staticProps: {
-      name: `additional_option_${index}_message`,
-      placeholder: message,
-      required: true,
-      className: 'w-full mb-1',
-      value: !!savedValue ? savedValue.message : null
-    }
-  });
-
-  adjustTextareaHeight(starterMessage);
-
-  const removeButton = createNewElement({
-    elementType: 'button',
-    staticProps: {
-      textContent: '+',
-      className: 'remove-button'
-    },
-    clickHandler: (e) => { 
-      e.preventDefault();
-      const button = e.target;
-      const item = button.closest('fieldset');
-      item.parentNode.removeChild(item);
-    }
-  });
-
-  const fieldset = createNewElement({
-    elementType: 'fieldset',
-    staticProps: { className: 'w-full' },
-    append: [hiddenInput, starterName, starterMessage, removeButton]
-  }); 
-
-  newForm.insertBefore(fieldset, addMoreButtonWrapper);
-
-  checkForDuplicateFieldEntries(starterName);
+function toggleLastClipboadItem (newForm) {
+  const lastFieldset = newForm.querySelector('fieldset:last-of-type');
+  const inputField = lastFieldset.querySelector('input[type="text"]');
+  inputField.click();
+  inputField.focus();
 }

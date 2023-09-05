@@ -1,6 +1,6 @@
 const ERROR_CLASS_NAME = 'errors';
 
-function checkForDuplicateFieldEntries(inputField) {
+function checkForDuplicateFieldEntries(inputField, removeButton) {
   inputField.addEventListener('blur', function() {
     const form = inputField.closest('form');
     const saveButton = form && form.querySelector('.submitForm');
@@ -9,7 +9,7 @@ function checkForDuplicateFieldEntries(inputField) {
       const errorDiv = document.createElement('div');
       errorDiv.className = ERROR_CLASS_NAME;
       errorDiv.textContent = 'This name already exists.';
-      inputField.insertAdjacentElement('afterend', errorDiv);
+      removeButton.insertAdjacentElement('afterend', errorDiv);
       saveButton.disabled = true;
     }
   });

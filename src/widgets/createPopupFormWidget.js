@@ -5,7 +5,8 @@ function createPopupFormWidget(props) {
     tagline,
     toggleText, 
     createPopupFormFields, 
-    saveAction 
+    saveAction, 
+    fullScreenEditor
   } = props;
 
   const popupFormToggle = createNewElement({
@@ -24,10 +25,12 @@ function createPopupFormWidget(props) {
         }
       });
 
+      const dynamicPopupClass = fullScreenEditor ? 'fullScreenEditor' : '';
+
       const newFormWrapper = createNewElement({
         elementType: 'div',
         staticProps: {
-          className: 'popupFormWrapper lg:mx-auto'
+          className: `popupFormWrapper ${dynamicPopupClass}`
         },
         appendTo: parent
       });
@@ -42,8 +45,24 @@ function createPopupFormWidget(props) {
 
       createHeader ({ newForm, newFormWrapper, title, tagline, closeForm });
 
+      const formFieldWrapper = createNewElement({
+        elementType: 'div',
+        staticProps: {
+          className: 'formFieldWrapper'
+        },
+        appendTo: newForm
+      });
+
+      const formFieldWrapperInner = createNewElement({
+        elementType: 'div',
+        staticProps: {
+          className: 'formFieldWrapperInner'
+        },
+        appendTo: formFieldWrapper
+      });
+
       await createPopupFormFields({ 
-        newForm,
+        newForm: formFieldWrapperInner,
         parent
       });
 

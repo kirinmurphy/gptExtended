@@ -11,7 +11,8 @@ function createClipboardWidget ({ clipboardWrapper }) {
     tagline: 'Save commonly used text snippets to re-use in/across chats.  Type the <strong>#keyword</strong> into your chat message to popuplate the clipboard text.',
     toggleText: 'clipboard',
     createPopupFormFields: createClipboardPopupFormFields,
-    saveAction: savePromptClipboardEntries
+    saveAction: savePromptClipboardEntries,
+    fullScreenEditor: true
   });  
   
   return clipboardWidget;
@@ -27,7 +28,8 @@ async function createClipboardPopupFormFields ({ newForm, parent }) {
     },
     savedFormDataKey: CLIPBOARD_FORM_DATA_KEY,
     savedFormAdditionalFieldsKey: CLIPBOARD_ADDITIONAL_FIELDS_KEY,
-    nameFieldCallback: (input) => { attachPoundSignListener(input); }
+    nameFieldCallback: (input) => { attachPoundSignListener(input); },
+    fullScreenEditor: true
   });
 
   await triggerDefaultFirstField({ parent });

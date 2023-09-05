@@ -1,3 +1,8 @@
+:root {
+  --gpt-ext-input-width: 250px;
+  --gpt-ext-fullScreenEditor-formfieldHeight: 65vh;
+}
+
 button.popupFormToggle {
   text-decoration: underline;
 }
@@ -19,11 +24,15 @@ button.popupFormToggle {
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   z-index: 100;
-  width:80vw;
+  width:90vw;
   max-width: 800px;
   border-radius: 8px;
   box-shadow: 5px 5px 5px var(--gpt-ext-shadow-color);
   background: var(--gpt-ext-popup-bg);
+}
+
+.popupFormWrapper.fullScreenEditor {
+  max-width: 1200px;
 }
 
 .popupForm {
@@ -65,7 +74,7 @@ button.popupFormToggle {
   margin-bottom: 1rem;
 }
 
-.popupForm > label textarea {
+.popupForm .formFieldWrapper > label textarea {
   margin-top: .5rem;
   min-height: 80px;
 }
@@ -76,7 +85,7 @@ button.popupFormToggle {
 
 .popupForm fieldset input {
   display: block;
-  width: 240px;
+  width: var(--gpt-ext-input-width);
   padding: .5rem;
   margin-right: 1rem;
   margin-bottom: .5rem;
@@ -104,4 +113,71 @@ button.popupFormToggle {
 
 .popupForm .formActionsFooter button {
   margin-left: .5rem;
+}
+
+/* -- .fullScreenEditor ---------------------------------------- */
+
+.popupFormWrapper.fullScreenEditor .popupForm {
+  overflow: hidden;
+}
+
+.popupFormWrapper.fullScreenEditor .formFieldWrapper {
+  position: relative;
+  width: var(--gpt-ext-input-width);
+  height: var(--gpt-ext-fullScreenEditor-formfieldHeight);
+}
+
+.popupFormWrapper.fullScreenEditor .formFieldWrapperInner {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  width: 105%;
+  padding: 2px;
+}
+
+.popupFormWrapper.fullScreenEditor .formFieldWrapperInner .addMoreButton {
+  transform: translateY(5px);  
+}
+
+.popupFormWrapper.fullScreenEditor fieldset {
+  position: static;
+}
+
+.popupFormWrapper.fullScreenEditor input[type="text"] {
+  display:inline-block;
+  margin-right: -25px;
+  padding-right: 45px;
+}
+
+.popupFormWrapper.fullScreenEditor textarea {
+  position: absolute;
+  top: 0;
+  left: calc(var(--gpt-ext-input-width) + 20px);;
+  width: calc(90vw - var(--gpt-ext-input-width) - 85px);
+  max-width: calc(1200px - var(--gpt-ext-input-width) - 85px);
+  height: var(--gpt-ext-fullScreenEditor-formfieldHeight) !important;
+}
+
+.popupFormWrapper.fullScreenEditor fieldset:not(.active) input[type="text"] {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.popupFormWrapper.fullScreenEditor fieldset:not(.active) input[type="text"]:hover {
+  background: var(--gpt-ext-bg-input);
+}
+
+.popupFormWrapper.fullScreenEditor fieldset:not(.active) textarea {
+  display:none;
+}
+
+.popupFormWrapper.fullScreenEditor fieldset .remove-button {
+  position: relative;
+  top: 2px;
+}
+
+.popupFormWrapper.fullScreenEditor fieldset .clearField {
+  top: 9px;
+  right: 8px;
 }
