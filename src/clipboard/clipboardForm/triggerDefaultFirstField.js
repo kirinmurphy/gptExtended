@@ -19,7 +19,7 @@ async function triggerDefaultFirstField ({ parent }) {
 
     if (e.target.classList.contains('addMoreButton')) {
       const firstFieldset = parent.querySelector('fieldset');
-      updateRemoveButtonDisplayState({ firstFieldset, displayState: "block" });
+      updateRemoveButtonDisplayState({ firstFieldset, displayState: "inline-block" });
       firstFieldset.querySelector('.clearField')?.remove();
     }
   });
