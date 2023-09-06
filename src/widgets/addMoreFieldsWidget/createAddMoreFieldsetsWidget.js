@@ -1,5 +1,3 @@
-const MAX_ADDITIONAL_FIELDS = 100;
-
 async function createAddMoreFieldsetsWidget (props) {
   const { 
     newForm, 
@@ -12,14 +10,6 @@ async function createAddMoreFieldsetsWidget (props) {
     fullScreenEditor
   } = props;
 
-  const addMoreButtonWrapper = createNewElement({
-    elementType: 'div',
-    staticProps: {
-      className: 'addMoreButtonWrapper'
-    },
-    appendTo: newForm
-  });
-
   let fieldsetCount = 0;
 
   const addMoreButton = createNewElement({
@@ -31,24 +21,38 @@ async function createAddMoreFieldsetsWidget (props) {
     clickHandler: (e) => {
       e.preventDefault();
   
-      if (fieldsetCount >= MAX_ADDITIONAL_FIELDS) { 
-        addMoreButton.disabled = true;
-      } else {
-        insertAdditionalFieldset({ 
-          newForm, 
-          addMoreButtonWrapper, 
-          index: fieldsetCount, 
-          formFieldText,
-          nameFieldCallback,
-          fullScreenEditor
-        });
-        fieldsetCount++;  
-        newForm.scrollTop = newForm.scrollHeight;
-        if ( fullScreenEditor ) { toggleLastClipboadItem(newForm); }
-      }
-    },
-    appendTo: addMoreButtonWrapper
+      insertAdditionalFieldset({ 
+        newForm, 
+        addMoreButtonWrapper, 
+        index: fieldsetCount, 
+        formFieldText,
+        nameFieldCallback,
+        fullScreenEditor
+      });
+
+      fieldsetCount++;
+      newForm.scrollTop = newForm.scrollHeight;
+      if ( fullScreenEditor ) { toggleLastClipboadItem(newForm); }
+      addMoreButton.disabled = true;
+    }
   });
+
+  const addMoreButtonWrapper = createNewElement({
+    elementType: 'div',
+    staticProps: {
+      className: 'addMoreButtonWrapper'
+    },
+    appendTo: newForm,
+    append: [addMoreButton],
+    clickHandler: () => {
+      const button = addMoreButtonWrapper.querySelector('button');
+      if (button && button.disabled) {
+        const textInputs = Array.from(newForm.querySelectorAll('input[type="text"]'));    
+        const emptyInput = textInputs.find(input => !input.value.trim());
+        if (emptyInput) { emptyInput.focus(); }
+      }
+    }
+  });  
 
   if ( additionalOptionInstruction ) {
     createNewElement({
@@ -65,9 +69,9 @@ async function createAddMoreFieldsetsWidget (props) {
 
   if ( results ) {
     const additionalFields = results[savedFormAdditionalFieldsKey];  
-
-    fieldsetCount = additionalFields.length;
   
+    fieldsetCount = additionalFields.length; 
+
     additionalFields.forEach((savedValue, index) => {
       insertAdditionalFieldset({ 
         newForm, 
@@ -78,23 +82,21 @@ async function createAddMoreFieldsetsWidget (props) {
         nameFieldCallback,
         fullScreenEditor
       });
-    });
-  
-    if (additionalFields.length === MAX_ADDITIONAL_FIELDS) {
-      addMoreButton.disabled = true;
-    }  
+    });  
   }
 
   if ( fullScreenEditor ) { 
     toggleLastClipboadItem(newForm); 
     const lastTextarea = newForm.querySelector('fieldset:last-of-type textarea');
-    lastTextarea.focus();
+    if ( lastTextarea ) { lastTextarea.focus(); }
   }
 }
 
 function toggleLastClipboadItem (newForm) {
   const lastFieldset = newForm.querySelector('fieldset:last-of-type');
-  const inputField = lastFieldset.querySelector('input[type="text"]');
-  inputField.click();
-  inputField.focus();
+  const inputField = lastFieldset?.querySelector('input[type="text"]');
+  if ( inputField ) {
+    inputField.click();
+    inputField.focus();  
+  }
 }

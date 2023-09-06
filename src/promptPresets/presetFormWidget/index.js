@@ -35,8 +35,8 @@ async function createPresetPopupFormFields ({ newForm }) {
     addMoreButtonText: 'Add More Prompts',
     additionalOptionInstruction: 'Add additional prompt instructions you can set for each unique chat.',
     formFieldText: {
-      label: 'Starter Prompt Name',
-      message: 'Starter Prompt'
+      label: 'Prompt Name',
+      message: 'Prompt Instructions'
     },
     savedFormDataKey: 'formData',
     savedFormAdditionalFieldsKey: 'additional_prompts'

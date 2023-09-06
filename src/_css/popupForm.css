@@ -1,6 +1,7 @@
 :root {
   --gpt-ext-input-width: 250px;
-  --gpt-ext-fullScreenEditor-formfieldHeight: 65vh;
+  --gpt-ext-fullScreenEditor-formfieldHeight: 60vh;
+  --gpt-ext-fullScreenEditor: 1100px;
 }
 
 button.popupFormToggle {
@@ -32,7 +33,7 @@ button.popupFormToggle {
 }
 
 .popupFormWrapper.fullScreenEditor {
-  max-width: 1200px;
+  max-width: var(--gpt-ext-fullScreenEditor);
 }
 
 .popupForm {
@@ -44,14 +45,21 @@ button.popupFormToggle {
   overflow-y: auto;
 }
 
+.popupForm .formFieldWrapper {
+  height: var(--gpt-ext-fullScreenEditor-formfieldHeight);
+}
+
+.popupForm .formFieldWrapperInner {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+
 .popupForm .remove-button {
   position: absolute;
   top: 8px; 
   right: 0;
-}
-
-.popupForm .remove-button {
-  transform: rotate(45deg) scale(1.5);
+  transform: scale(1.5);
   font-size: 1.5rem;  
 }
 
@@ -74,7 +82,7 @@ button.popupFormToggle {
   margin-bottom: 1rem;
 }
 
-.popupForm .formFieldWrapper > label textarea {
+.popupForm .formFieldWrapperInner > label textarea {
   margin-top: .5rem;
   min-height: 80px;
 }
@@ -102,6 +110,10 @@ button.popupFormToggle {
   align-items: center;
 }
 
+.popupForm .addMoreButton[disabled] {
+  pointer-events: none;
+}
+
 .popupForm .formActionsFooter {
   position: absolute;
   left:0;
@@ -124,13 +136,9 @@ button.popupFormToggle {
 .popupFormWrapper.fullScreenEditor .formFieldWrapper {
   position: relative;
   width: var(--gpt-ext-input-width);
-  height: var(--gpt-ext-fullScreenEditor-formfieldHeight);
 }
 
 .popupFormWrapper.fullScreenEditor .formFieldWrapperInner {
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 100%;
   width: 105%;
   padding: 2px;
 }
@@ -154,7 +162,7 @@ button.popupFormToggle {
   top: 0;
   left: calc(var(--gpt-ext-input-width) + 20px);;
   width: calc(90vw - var(--gpt-ext-input-width) - 85px);
-  max-width: calc(1200px - var(--gpt-ext-input-width) - 85px);
+  max-width: calc(var(--gpt-ext-fullScreenEditor) - var(--gpt-ext-input-width) - 85px);
   height: var(--gpt-ext-fullScreenEditor-formfieldHeight) !important;
 }
 
@@ -178,6 +186,6 @@ button.popupFormToggle {
 }
 
 .popupFormWrapper.fullScreenEditor fieldset .clearField {
-  top: 9px;
+  top: 12px;
   right: 8px;
 }

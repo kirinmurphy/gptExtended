@@ -18,66 +18,87 @@ function insertAdditionalFieldset (props) {
     }
   });
   
-  const starterName = createNewElement({
+  const fieldLabel = createNewElement({
     elementType: 'input',
     staticProps: {
       type: 'text',
       name: `additional_option_${index}_name`,
       placeholder: label,
       required: true,
-      value: !!savedValue ? savedValue.name : null
+      value: !!savedValue ? savedValue.name : null,
+      tabIndex: '1'
     },
     clickHandler: (event) => {
-      if ( !fullScreenEditor ) return;
-      const parentFieldset = event.target.closest('fieldset');
-      if ( parentFieldset.classList.contains('active') ) { return; }
-      
-      const form = event.target.closest('form');
-      const activeFieldset = form.querySelector('fieldset.active');
-      if (activeFieldset) {
-        activeFieldset.classList.remove('active');
-      }
-      parentFieldset.classList.add('active');
-      parentFieldset.querySelector('textarea').focus();
+      if ( fullScreenEditor ) { setActiveElementState({ event }); }
     }
   });
 
-  nameFieldCallback && nameFieldCallback(starterName);
+  fieldLabel.addEventListener('keyup', (event) => {
+    setAddMoreButtonDisabledState({ newForm });
+  });
 
-  const starterMessage = createNewElement({
+  nameFieldCallback && nameFieldCallback(fieldLabel);
+
+  const fieldMessage = createNewElement({
     elementType: 'textarea',
     staticProps: {
       name: `additional_option_${index}_message`,
       placeholder: message,
       required: true,
       className: 'w-full mb-1',
-      value: !!savedValue ? savedValue.message : null
+      value: !!savedValue ? savedValue.message : null,
+      tabIndex: '2'
     }
   });
 
-  adjustTextareaHeight(starterMessage);
+  if ( !fullScreenEditor ) {
+    adjustTextareaHeight(fieldMessage);
+  }
 
   const removeButton = createNewElement({
     elementType: 'button',
     staticProps: {
-      textContent: '+',
-      className: 'remove-button'
+      textContent: '×',
+      className: 'remove-button',
+      tabIndex: '3'
     },
-    clickHandler: (e) => { 
-      e.preventDefault();
-      const button = e.target;
+    clickHandler: (event) => { 
+      event.preventDefault();
+      const button = event.target;
       const item = button.closest('fieldset');
       item.parentNode.removeChild(item);
+      setAddMoreButtonDisabledState({ newForm });
     }
   });
 
   const fieldset = createNewElement({
     elementType: 'fieldset',
     staticProps: { className: 'w-full' },
-    append: [hiddenInput, starterName, removeButton, starterMessage]
+    append: [hiddenInput, fieldLabel, removeButton, fieldMessage]
   }); 
 
   newForm.insertBefore(fieldset, addMoreButtonWrapper);
 
-  checkForDuplicateFieldEntries(starterName, removeButton);
+  checkForDuplicateFieldEntries(fieldLabel, removeButton);
+}
+
+function setActiveElementState ({ event }) {
+  const parentFieldset = event.target.closest('fieldset');
+  if ( parentFieldset.classList.contains('active') ) { return; }
+  
+  const form = event.target.closest('form');
+  const activeFieldset = form.querySelector('fieldset.active');
+  if (activeFieldset) {
+    activeFieldset.classList.remove('active');
+  }
+  parentFieldset.classList.add('active');
+  parentFieldset.querySelector('textarea').focus();
+}
+
+function setAddMoreButtonDisabledState({ newForm }) {
+  const textInputs = Array.from(newForm.querySelectorAll('input[type="text"]'));
+  const addMoreButton = newForm.querySelector('.addMoreButton');
+  
+  const hasEmptyInput = textInputs.some(input => input.value === '');
+  addMoreButton.disabled = hasEmptyInput;
 }
