@@ -3,7 +3,9 @@ function createNewElement({ elementType, staticProps, clickHandler, appendTo, ap
   Object.assign(element, staticProps);
 
   if ( staticProps?.style ) {
-    Object.assign(element.style, staticProps.style);
+    for (const [key, value] of Object.entries(staticProps.style)) {
+      element.style[key] = value;
+    }
   }
   
   if (clickHandler) {

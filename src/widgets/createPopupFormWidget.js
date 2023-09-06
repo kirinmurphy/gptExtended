@@ -113,7 +113,7 @@ function createHeader ({ newForm, title, tagline, closeForm }) {
   createNewElement({
     elementType: 'button',
     staticProps: {
-      textContent: '+',
+      textContent: '×',
       className: 'remove-button'
     },
     clickHandler: (e) => { 

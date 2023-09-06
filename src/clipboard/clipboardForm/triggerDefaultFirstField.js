@@ -28,6 +28,7 @@ async function triggerDefaultFirstField ({ parent }) {
 function replaceRemoveWithClear ({ parent }) {
   const firstFieldset = parent.querySelector('fieldset');
   updateRemoveButtonDisplayState({ firstFieldset, displayState: "none" });
+  
   createNewElement({
     elementType: 'div',
     staticProps: {
@@ -37,6 +38,7 @@ function replaceRemoveWithClear ({ parent }) {
     clickHandler: (e) => {
       firstFieldset.querySelector('input[type="text"]').value = "";
       firstFieldset.querySelector('textarea').value = "";
+      parent.closest('form').querySelector('.addMoreButton').disabled = true;
     },
     appendTo: firstFieldset
   });
