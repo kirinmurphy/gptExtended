@@ -1,11 +1,11 @@
 .presetSelectorWrapper {
   position: relative;
-  margin-right: .75rem;
 }
 
 .presetSelector {
   cursor: pointer;
   padding-right: .2rem;
+  margin-right: .75rem;
 }
 
 .presetSelector:after {

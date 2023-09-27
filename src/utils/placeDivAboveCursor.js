@@ -1,5 +1,5 @@
 function placeDivAboveCursor({ textarea, classNames }) {
-  const VERTICAL_OFFSET = 40;
+  const VERTICAL_OFFSET = 12;
   const matchingSelector = '.' + classNames.replace(/ /g, '.') 
   let keywordMatcherDiv = document.querySelector(matchingSelector);
 
