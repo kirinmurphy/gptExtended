@@ -25,6 +25,7 @@
                 "src/promptPresets/postPresetsOnPromptChange.js",
                 "src/promptPresets/index.js",
                 "src/promptPresets/observeChatState.js",
+                "src/promptPresets/observePromptFormReadded.js",
                 "src/promptPresets/postPresets.js",
                 "src/promptPresets/presetFormWidget/index.js",
                 "src/promptPresets/presetFormWidget/savePromptPresets.js",
