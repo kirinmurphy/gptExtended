@@ -127,6 +127,11 @@ button.popupFormToggle {
   margin-left: .5rem;
 }
 
+/* -- not .fullScreenEditor ---------------------------------------- */
+.popupFormWrapper:not(.fullScreenEditor) .formFieldWrapperInner {
+  padding: 0 .5rem 0 .1rem;
+}
+
 /* -- .fullScreenEditor ---------------------------------------- */
 
 .popupFormWrapper.fullScreenEditor .popupForm {

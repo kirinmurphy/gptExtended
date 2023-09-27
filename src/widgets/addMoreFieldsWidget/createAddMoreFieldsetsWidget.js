@@ -31,7 +31,11 @@ async function createAddMoreFieldsetsWidget (props) {
       });
 
       fieldsetCount++;
-      newForm.scrollTop = newForm.scrollHeight;
+      
+      setTimeout(() => {
+        newForm.scrollTop = newForm.scrollHeight;
+      }, 10);
+
       if ( fullScreenEditor ) { toggleLastClipboadItem(newForm); }
       addMoreButton.disabled = true;
     }
