@@ -26,7 +26,7 @@ function insertAdditionalFieldset (props) {
       placeholder: label,
       required: true,
       value: !!savedValue ? savedValue.name : null,
-      tabIndex: '1'
+      tabIndex: ((index*3)+1).toString()
     },
     clickHandler: (event) => {
       if ( fullScreenEditor ) { setActiveElementState({ event }); }
@@ -47,7 +47,7 @@ function insertAdditionalFieldset (props) {
       required: true,
       className: 'w-full mb-1',
       value: !!savedValue ? savedValue.message : null,
-      tabIndex: '2'
+      tabIndex: ((index*3)+2).toString()
     }
   });
 
@@ -60,7 +60,7 @@ function insertAdditionalFieldset (props) {
     staticProps: {
       textContent: '×',
       className: 'remove-button',
-      tabIndex: '3'
+      tabIndex: ((index*3)+3).toString()
     },
     clickHandler: (event) => { 
       event.preventDefault();
