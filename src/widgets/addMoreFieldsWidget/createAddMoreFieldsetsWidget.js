@@ -27,7 +27,7 @@ async function createAddMoreFieldsetsWidget (props) {
         index: fieldsetCount, 
         formFieldText,
         nameFieldCallback,
-        fullScreenEditor
+        fullScreenEditor,
       });
 
       fieldsetCount++;
@@ -84,7 +84,7 @@ async function createAddMoreFieldsetsWidget (props) {
         savedValue,
         formFieldText,
         nameFieldCallback,
-        fullScreenEditor
+        fullScreenEditor,
       });
     });  
   }

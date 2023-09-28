@@ -1,4 +1,4 @@
-function insertAdditionalFieldset (props) {
+function insertAdditionalFieldset(props) {
   const { 
     newForm, 
     addMoreButtonWrapper, 
@@ -6,7 +6,7 @@ function insertAdditionalFieldset (props) {
     savedValue,
     formFieldText: { label, message },
     nameFieldCallback,
-    fullScreenEditor
+    fullScreenEditor,
   } = props;
 
   const hiddenInput = createNewElement({
@@ -17,7 +17,7 @@ function insertAdditionalFieldset (props) {
       value: savedValue?.uuid || generateUUID()
     }
   });
-  
+
   const fieldLabel = createNewElement({
     elementType: 'input',
     staticProps: {
@@ -26,10 +26,12 @@ function insertAdditionalFieldset (props) {
       placeholder: label,
       required: true,
       value: !!savedValue ? savedValue.name : null,
-      tabIndex: ((index*3)+1).toString()
+      tabIndex: ((index * 3) + 1).toString()
     },
     clickHandler: (event) => {
-      if ( fullScreenEditor ) { setActiveElementState({ event }); }
+      if (fullScreenEditor) { 
+        setActiveElementState({ event }); 
+      }
     }
   });
 
@@ -47,11 +49,11 @@ function insertAdditionalFieldset (props) {
       required: true,
       className: 'w-full mb-1',
       value: !!savedValue ? savedValue.message : null,
-      tabIndex: ((index*3)+2).toString()
+      tabIndex: ((index * 3) + 2).toString()
     }
   });
 
-  if ( !fullScreenEditor ) {
+  if (!fullScreenEditor) {
     adjustTextareaHeight(fieldMessage);
   }
 
@@ -60,7 +62,7 @@ function insertAdditionalFieldset (props) {
     staticProps: {
       textContent: '×',
       className: 'remove-button',
-      tabIndex: ((index*3)+3).toString()
+      tabIndex: ((index * 3) + 3).toString()
     },
     clickHandler: (event) => { 
       event.preventDefault();
@@ -74,10 +76,17 @@ function insertAdditionalFieldset (props) {
   const fieldset = createNewElement({
     elementType: 'fieldset',
     staticProps: { className: 'w-full' },
-    append: [hiddenInput, fieldLabel, removeButton, fieldMessage]
-  }); 
+    append: [
+      hiddenInput, 
+      fieldLabel, 
+      removeButton, 
+      fieldMessage
+    ]
+  });
 
   newForm.insertBefore(fieldset, addMoreButtonWrapper);
+
+  addMaxLengthCheckIfRequired({ newForm, fieldset, fieldMessage, removeButton });
 
   checkForDuplicateFieldEntries(fieldLabel, removeButton);
 }
@@ -85,7 +94,7 @@ function insertAdditionalFieldset (props) {
 function setActiveElementState ({ event }) {
   const parentFieldset = event.target.closest('fieldset');
   if ( parentFieldset.classList.contains('active') ) { return; }
-  
+ 
   const form = event.target.closest('form');
   const activeFieldset = form.querySelector('fieldset.active');
   if (activeFieldset) {
@@ -98,7 +107,7 @@ function setActiveElementState ({ event }) {
 function setAddMoreButtonDisabledState({ newForm }) {
   const textInputs = Array.from(newForm.querySelectorAll('input[type="text"]'));
   const addMoreButton = newForm.querySelector('.addMoreButton');
-  
+    
   const hasEmptyInput = textInputs.some(input => input.value === '');
   addMoreButton.disabled = hasEmptyInput;
 }

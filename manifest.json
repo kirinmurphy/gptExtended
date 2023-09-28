@@ -36,6 +36,7 @@
                 "src/widgets/createActionsFooter.js",
                 "src/widgets/createPopupFormWidget.js",
                 "src/widgets/createNewFormOverlay.js",
+                "src/widgets/addMoreFieldsWidget/addMaxLengthCheckIfRequired.js",
                 "src/widgets/addMoreFieldsWidget/insertAdditionalFieldset.js",
                 "src/widgets/addMoreFieldsWidget/createAddMoreFieldsetsWidget.js",
                 "src/clipboard/observePromptMessage.js",
