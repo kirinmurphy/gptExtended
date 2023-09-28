@@ -19,7 +19,6 @@ async function observeChatState() {
     }
 
     if ( !gptExtendedWrapper ) {
-      console.log('EEEEEEEEEEEE');
       const { promptPresetWrapper, clipboardWrapper } = initGptExtended();
 
       await observePromptMessage({ clipboardWrapper });

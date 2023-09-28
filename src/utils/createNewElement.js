@@ -1,4 +1,13 @@
-function createNewElement({ elementType, staticProps, clickHandler, appendTo, append }) {
+function createNewElement(props) {
+  const {
+    elementType,
+    staticProps,
+    clickHandler,
+    blurHandler,
+    appendTo,
+    append
+   } = props;
+
   const element = document.createElement(elementType);
   Object.assign(element, staticProps);
 
@@ -10,6 +19,10 @@ function createNewElement({ elementType, staticProps, clickHandler, appendTo, ap
   
   if (clickHandler) {
     element.addEventListener('click', clickHandler);
+  }
+
+  if (blurHandler) {
+    element.addEventListener('blur', blurHandler);
   }
 
   if ( appendTo ) {

@@ -78,6 +78,15 @@ button.popupFormToggle {
   cursor:pointer;
 }
 
+.popupForm .max-length-message {
+  color: var(--gpt-ext-error-color);
+  font-size: .8rem;
+}
+
+.popupForm label .max-length-message {
+  padding-left: 1rem;
+}
+
 .popupForm textarea {
   margin-bottom: 1rem;
 }
@@ -92,7 +101,7 @@ button.popupFormToggle {
 }
 
 .popupForm fieldset input {
-  display: block;
+  display: inline-block;
   width: var(--gpt-ext-input-width);
   padding: .5rem;
   margin-right: 1rem;
@@ -157,7 +166,6 @@ button.popupFormToggle {
 }
 
 .popupFormWrapper.fullScreenEditor input[type="text"] {
-  display:inline-block;
   margin-right: -25px;
   padding-right: 45px;
 }
