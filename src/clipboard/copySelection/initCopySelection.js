@@ -38,8 +38,12 @@ function initCopySelection() {
           appendTo: document.body
         });
 
-        const popupStyles = getSelectionCopyFormPositioning(event, selectionContainer);
-        Object.assign(selectionContainer.style, popupStyles);
+        Object.assign(selectionContainer.style, {
+          position: 'absolute',
+          right: '1rem',
+          bottom: '1rem',
+          zIndex: '1000'
+        });
 
         setTimeout(() => {
           document.addEventListener('click', function outsideClickListener(event) {

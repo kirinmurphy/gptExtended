@@ -43,7 +43,6 @@
                 "src/clipboard/checkForKeywordInPrompt.js",
                 "src/clipboard/getSnippetClipboardForm.js",
                 "src/clipboard/copySelection/initCopySelection.js",
-                "src/clipboard/copySelection/getSelectionCopyFormPositioning.js",
                 "src/clipboard/clipboardForm/createClipboardWidget.js",
                 "src/clipboard/clipboardForm/saveClipboardEntries.js",
                 "src/clipboard/clipboardForm/triggerDefaultFirstField.js",
