@@ -8,11 +8,8 @@ async function createTextarea(props) {
     appendTo,
     onAfterLoad,
     inputHandler,
-    focusHandler,
     blurHandler
   } = props;
-
-  console.log('props', props);
   
   const textarea = createNewElement({
     elementType: 'textarea',
@@ -37,16 +34,11 @@ async function createTextarea(props) {
   });
 
   if (onAfterLoad) {
-    onAfterLoad({ label, textarea, value: formData[textarea.name] });
+    onAfterLoad({ value: formData[textarea.name] });
   }
 
   if (inputHandler) {
     textarea.addEventListener('input', inputHandler);
-  }
-
-  if (focusHandler) {
-    console.log('focusHandler for', labelText);
-    textarea.addEventListener('focus', focusHandler);
   }
 
   if (blurHandler) {

@@ -7,7 +7,8 @@ async function createAddMoreFieldsetsWidget (props) {
     savedFormDataKey,
     savedFormAdditionalFieldsKey,
     nameFieldCallback,
-    fullScreenEditor
+    fullScreenEditor,
+    addMaxLengthCheck
   } = props;
 
   let fieldsetCount = 0;
@@ -28,6 +29,7 @@ async function createAddMoreFieldsetsWidget (props) {
         formFieldText,
         nameFieldCallback,
         fullScreenEditor,
+        addMaxLengthCheck
       });
 
       fieldsetCount++;
@@ -85,6 +87,7 @@ async function createAddMoreFieldsetsWidget (props) {
         formFieldText,
         nameFieldCallback,
         fullScreenEditor,
+        addMaxLengthCheck
       });
     });  
   }

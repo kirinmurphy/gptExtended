@@ -7,6 +7,7 @@ function insertAdditionalFieldset(props) {
     formFieldText: { label, message },
     nameFieldCallback,
     fullScreenEditor,
+    addMaxLengthCheck
   } = props;
 
   const hiddenInput = createNewElement({
@@ -86,7 +87,9 @@ function insertAdditionalFieldset(props) {
 
   newForm.insertBefore(fieldset, addMoreButtonWrapper);
 
-  addMaxLengthCheckIfRequired({ newForm, fieldset, fieldMessage, removeButton });
+  if ( addMaxLengthCheck ) {
+    checkMaxLengthIfRequired({ newForm, fieldset, fieldMessage, removeButton });
+  }
 
   checkForDuplicateFieldEntries(fieldLabel, removeButton);
 }
