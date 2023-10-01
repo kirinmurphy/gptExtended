@@ -1,10 +1,13 @@
-const MAX_RESPONSE_LENGTH = 20;
+const MAX_RESPONSE_LENGTH = 1500;
 
-function checkMaxLength (props) {
-  const { 
-    newForm, 
-    textarea, 
-    otherFieldValueLengthAttribute, 
+const MAX_LENGTH_MESSAGE_HTML = 'max character length reached <b>&#9432;</b>';
+const TOOLTIP_MESSAGE = `The default response prompt combined with each additional prompt must be below ${MAX_RESPONSE_LENGTH} characters`;
+
+function checkMaxLength(props) {
+  const {
+    newForm,
+    textarea,
+    otherFieldValueLengthAttribute,
     onBlurCallback,
     onAfterLoad
   } = props;
@@ -13,28 +16,48 @@ function checkMaxLength (props) {
     elementType: 'span',
     staticProps: {
       className: 'max-length-message',
-      textContent: ''
+      innerHTML: '',
     }
+  });
+
+  const tooltip = createNewElement({
+    elementType: 'div',
+    staticProps: {
+      className: 'tooltip',
+      innerHTML: TOOLTIP_MESSAGE,
+    }
+  });
+
+  maxLengthMessage.addEventListener('mouseover', () => {
+    maxLengthMessage.appendChild(tooltip);
+  });
+
+  maxLengthMessage.addEventListener('mouseout', () => {
+    maxLengthMessage.removeChild(tooltip);
   });
 
   textarea.addEventListener('focus', () => {
     const otherFieldValueLength = newForm.getAttribute(otherFieldValueLengthAttribute);
     const availableMaxLength = MAX_RESPONSE_LENGTH - otherFieldValueLength;
     textarea.setAttribute('maxLength', availableMaxLength);
-    const atMaxLength = textarea.value.length >= availableMaxLength;
-    maxLengthMessage.textContent = atMaxLength ? 'max text length reached' : '';
-  });  
+    toggleMaxLengthMessage(textarea, availableMaxLength);
+  });
 
   textarea.addEventListener('input', (e) => {
     const availableMaxLength = parseInt(textarea.getAttribute('maxLength'), 10);
-    const atMaxLength = textarea.value.length >= availableMaxLength;
-    maxLengthMessage.textContent = atMaxLength ? 'max text length reached' : '';
+    toggleMaxLengthMessage(textarea, availableMaxLength);
   });
-  
+
+  function toggleMaxLengthMessage (textarea, availableMaxLength) {
+    const atMaxLength = textarea.value.length >= availableMaxLength;
+    maxLengthMessage.innerHTML = atMaxLength ? MAX_LENGTH_MESSAGE_HTML : '';
+  }
+
   textarea.addEventListener('blur', (e) => {
     onBlurCallback(textarea);
-    maxLengthMessage.textContent = '';
+    maxLengthMessage.innerHTML = '';
   });
 
   onAfterLoad({ maxLengthMessage, textarea });
 }
+

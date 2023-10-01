@@ -79,12 +79,26 @@ button.popupFormToggle {
 }
 
 .popupForm .max-length-message {
-  color: var(--gpt-ext-error-color);
+  display: inline-block;
+  position: relative;
+  color: #f33;
   font-size: .8rem;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .popupForm label .max-length-message {
   padding-left: 1rem;
+}
+
+.popupForm .max-length-message .tooltip {
+  position: absolute; 
+  top: 1.4rem;
+  left: .75rem;
+  width: 350px;
+  padding: .5rem 1rem;
+  color: #fff;
+  font-weight: normal;
 }
 
 .popupForm textarea {

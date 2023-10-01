@@ -8,6 +8,7 @@ input[type="text"],
   color: var(--gpt-ext-error-color);
 }
 
+.tooltip,
 .dropdown {
   position: absolute;
   background: var(--gpt-ext-bg-dropdown);
