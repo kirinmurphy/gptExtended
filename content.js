@@ -6,8 +6,6 @@ chrome.runtime.onMessage.addListener(
 
 observeChatState();
 
-// shrug?  fires before page leaves, but doesn't wait for response
-// seems to work :/
 window.addEventListener('beforeunload', async function (event) {
   event.preventDefault();
   await postPresetsOnPromptChange({ selectedPreset: DEFAULT_UUID });  
