@@ -1,4 +1,3 @@
-
 async function onGPTPromptFocus ({ textarea, checkForKeywordListener, typeaheadListener }) {
   if (checkForKeywordListener) {
     textarea.removeEventListener('keyup', checkForKeywordListener);
@@ -6,6 +5,11 @@ async function onGPTPromptFocus ({ textarea, checkForKeywordListener, typeaheadL
 
   if (typeaheadListener) {
     textarea.removeEventListener('keyup', typeaheadListener);
+  }
+
+  if (chrome.runtime.lastError) {
+    console.warn("Extension context invalidated:", chrome.runtime.lastError);
+    return;
   }
 
   const clipboardData = await asyncLoad(CLIPBOARD_FORM_DATA_KEY);
@@ -20,7 +24,7 @@ async function onGPTPromptFocus ({ textarea, checkForKeywordListener, typeaheadL
     const { lastMatch, filteredNames } = getPartialMatchers({ textarea, replacements });
     const keywordMatcherDiv = placeDivAboveCursor({ textarea, classNames: 'possibleMatchers dropdown' });
 
-    if ( !!filteredNames.length ) {
+    if (!!filteredNames.length) {
       keywordMatcherDiv.innerHTML = '';
       filteredNames.forEach(matcher => {
         createNewElement({
@@ -37,7 +41,7 @@ async function onGPTPromptFocus ({ textarea, checkForKeywordListener, typeaheadL
     } else {
       keywordMatcherDiv.parentNode.removeChild(keywordMatcherDiv);
     }
-  }
+  };
 
   textarea.addEventListener('keyup', checkForKeywordListener);
   textarea.addEventListener('keyup', typeaheadListener);

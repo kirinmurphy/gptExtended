@@ -9,12 +9,19 @@ async function observePromptMessage ({ clipboardWrapper }) {
   if (document.activeElement === textarea) {
     await onGPTPromptFocus(props);
   }
- 
-  textarea.addEventListener('focus', async () => {
+
+  const focusHandler = async () => {
     await onGPTPromptFocus(props);
-  });
+  };
+  
+  textarea.addEventListener('focus', focusHandler);
 
   createClipboardWidget({ clipboardWrapper });
   initCodeSnippetObserver();
   initCopySelection();
+
+  const port = chrome.runtime.connect();
+  port.onDisconnect.addListener(() => {
+    textarea.removeEventListener('focus', focusHandler);
+  });
 };
