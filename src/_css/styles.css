@@ -3,7 +3,6 @@
   z-index: 23123123;
   display: flex;
   padding: .5rem 1rem;
-  margin-top: -8px;
   border-radius: 0 0 6px 6px;
   font-size: .9rem;
   background: var(--gpt-ext-bg-color);
